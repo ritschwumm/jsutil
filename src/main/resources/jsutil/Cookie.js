@@ -7,7 +7,7 @@ jsutil.Cookie = {
 	
 	/** get a named cookie or returns null */
 	get: function(name) {
-		var	point	= new RegExp("\\b" + encodeURIComponent(name).escapeRE() + "=");
+		var	point	= new RegExp("\\b" + jsutil.String.escapeRE(encodeURIComponent(name)) + "=");
 		var	s1		= document.cookie.split(point)[1];
 		if (!s1)	return null;
 		var s	= s1.split(";")[0].replace(/ *$/, "");
