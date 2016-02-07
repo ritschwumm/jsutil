@@ -12,8 +12,8 @@ if (!Object.create)
 if (!Object.prototype.keys)
 		Object.prototype.keys	= function() {
 			var	out	= [];
-			for (var key in obj) {
-				if (obj.hasOwnProperty(key)) {
+			for (var key in this) {
+				if (this.hasOwnProperty(key)) {
 					out.push(key);
 				}
 			}
