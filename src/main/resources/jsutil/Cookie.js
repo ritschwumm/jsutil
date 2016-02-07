@@ -6,26 +6,25 @@ jsutil.Cookie = {
 	TTL_DELETE:		-3*24*60*60*1000,	// 3 days before
 	
 	/** get a named cookie or returns null */
-	get: function(key) {
-		var	point	= new RegExp("\\b" + encodeURIComponent(key).escapeRE() + "=");
-		var	s		= document.cookie.split(point)[1];
-		if (!s)	return null;
-		s	= s.split(";")[0].replace(/ *$/, "");
+	get: function(name) {
+		var	point	= new RegExp("\\b" + encodeURIComponent(name).escapeRE() + "=");
+		var	s1		= document.cookie.split(point)[1];
+		if (!s1)	return null;
+		var s	= s1.split(";")[0].replace(/ *$/, "");
 		return decodeURIComponent(s);
 	},
 
 	/** set a named cookie */
-	set: function(key, value, expires) {
-		if (!expires)	expires	= this.timeout(this.TTL_DEFAULT);
-		document.cookie	= encodeURIComponent(key) + "=" + encodeURIComponent(value) +
-						"; expires=" + expires.toUTCString() +
+	set: function(name, value, expires) {
+		var expires2	= expires || this.timeout(this.TTL_DEFAULT);
+		document.cookie	= encodeURIComponent(name) + "=" + encodeURIComponent(value) +
+						"; expires=" + expires2.toUTCString() +
 						"; path=/";
 	},
 
 	/** delete a named cookie */
-	del: function(key) {
-		this.set(key, "",
-				this.timeout(this.TTL_DELETE));
+	remove: function(name) {
+		this.set(name, "", this.timeout(this.TTL_DELETE));
 	},
 
 	/** calculate a date a given number of millis in the future */

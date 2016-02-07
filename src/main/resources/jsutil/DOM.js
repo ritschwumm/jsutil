@@ -30,7 +30,16 @@ jsutil.DOM = {
 		element.addEventListener(eventName, listener, useCapture);
 		return removeFunc;
 	},
-
+	
+	/** make an event handler eating the event up */
+	selfishHandler: function(delegate) {
+		return function(ev) {
+			ev.stopPropagation();
+			ev.preventDefault();
+			delegate(ev);
+		};
+	},
+	
 	//------------------------------------------------------------------------------
 	//## find
 	
