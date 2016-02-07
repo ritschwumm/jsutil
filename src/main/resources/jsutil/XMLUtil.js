@@ -5,7 +5,8 @@ var XMLUtil = {
 	
 	/** parses a String into an XMLDocument */
 	parseXML: function(text) {
-		var	doc		= new DOMParser().parseFromString(text, "text/xml");
+		// TODO text/html does work on firefox, but not on webkit
+		var	doc		= new DOMParser().parseFromString(text, "text/html");
 		var	root	= doc.documentElement;
 		// root.namespaceURI === "http://www.mozilla.org/newlayout/xml/parsererror.xml"
 		if (root.tagName === "parserError"	// ff 2
