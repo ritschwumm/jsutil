@@ -1,7 +1,9 @@
-name			:= "jsutil"
+name				:= "jsutil"
 
-organization	:= "de.djini"
+organization		:= "de.djini"
 
-version			:= "0.2.0"
+version				:= "0.3.0"
 
-crossPaths		:= false
+crossPaths			:= false
+
+autoScalaLibrary	:= false
