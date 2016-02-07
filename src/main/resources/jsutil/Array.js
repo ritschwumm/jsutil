@@ -2,6 +2,10 @@ var jsutil	= jsutil || {};
 
 /** Array helper functions */
 jsutil.Array = {
+	empty: function() {
+		return [];
+	},
+	
 	single: function(item) {
 		return [ item ];
 	},

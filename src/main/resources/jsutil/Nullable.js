@@ -1,6 +1,10 @@
 var jsutil	= jsutil || {};
 
 jsutil.Nullable	= {
+	empty: function() {
+		return null;
+	},
+	
 	maybe: function(cond, item) {
 		return cond ? item : null;
 	},

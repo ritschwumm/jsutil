@@ -7,18 +7,17 @@ jsutil.Cookie = {
 	
 	/** get a named cookie or returns null */
 	get: function(name) {
-		var	point	= new RegExp("\\b" + jsutil.String.escapeRE(encodeURIComponent(name)) + "=");
+		var	point	= new RegExp("\\b" + jsutil.RegExp.escape(encodeURIComponent(name)) + "=");
 		var	s1		= document.cookie.split(point)[1];
 		if (!s1)	return null;
-		var s	= s1.split(";")[0].replace(/ *$/, "");
+		var s	= s1.split(";")[0].replace(/ +$/, "");
 		return decodeURIComponent(s);
 	},
-
+	
 	/** set a named cookie */
 	set: function(name, value, expires) {
-		var expires2	= expires || this.timeout(this.TTL_DEFAULT);
-		document.cookie	= encodeURIComponent(name) + "=" + encodeURIComponent(value) +
-						"; expires=" + expires2.toUTCString() +
+		document.cookie	= encodeURIComponent(name) + "=" + encodeURIComponent(value)			 +
+						"; expires=" + (expires || this.timeout(this.TTL_DEFAULT)).toUTCString() +
 						"; path=/";
 	},
 

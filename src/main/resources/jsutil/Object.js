@@ -2,6 +2,10 @@ var jsutil	= jsutil || {};
 
 /** Object helper functions */
 jsutil.Object = {
+	empty: function() {
+		return {};
+	},
+	
 	single: function(key, value) {
 		var out	= {};
 		out[key]	= value;
