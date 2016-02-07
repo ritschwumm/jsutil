@@ -31,14 +31,6 @@ jsutil.DOM = {
 		return removeFunc;
 	},
 	
-	/** make an event handler eating up the event */
-	selfishHandler: function(delegate) {
-		return function(ev) {
-			ev.preventDefault();
-			delegate(ev);
-		};
-	},
-	
 	//------------------------------------------------------------------------------
 	//## find
 	
@@ -303,8 +295,8 @@ jsutil.DOM = {
 	
 	/** switches between two different classes */
 	switchClass: function(element, condition, trueClassName, falseClassName) {
-		if (condition)	this.replaceClass(element, falseClassName, trueClassName);
-		else			this.replaceClass(element, trueClassName, falseClassName);
+		if (condition)	this.replaceClass(element, falseClassName,	trueClassName);
+		else			this.replaceClass(element, trueClassName,	falseClassName);
 	},
 	
 	/** choose one class from a set */
