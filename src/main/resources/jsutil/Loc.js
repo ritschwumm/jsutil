@@ -18,14 +18,14 @@ jsutil.Loc	= function(urlStr) {
 	this.protocol	= m[2] ? m[2] : null;							// http:
 	this.host		= m[3] ? m[3] : null;							// de.wikipedia.org
 	this.port		= m[4] ? parseInt(m[4].substring(1)) : null;	// 80
-	this.pathname	= m[5] ? m[5] : "";								// /wiki/Test
-	this.hash		= m[6] ? m[6] : "";								// #Industry
-	this.search		= m[7] ? m[7] : "";								// ?action=edit
+	this.pathname	= m[5] ? m[5] : null;							// /wiki/Test
+	this.search		= m[6] ? m[6] : null;							// ?action=edit
+	this.hash		= m[7] ? m[7] : null;							// #Industry
 };
 jsutil.Loc.prototype = {
 	/** matches a global or local URL */
-	parser: /((.+?)\/\/([^:\/]+)(:[0-9]+)?)?([^#?]+)?(#[^?]*)?(\?.*)?/,
-
+	parser: /((.+?)\/\/([^:\/]+)(:[0-9]+)?)?([^#?]+)?(\?[^#]*)?(#.*)?/,
+	
 	/** returns the href which is the only usable string representationn of an URL */
 	toString: function() {
 		return this.hostPart() + this.pathPart();
