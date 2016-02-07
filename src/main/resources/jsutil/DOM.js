@@ -307,6 +307,38 @@ jsutil.DOM = {
 		if (condition)	this.replaceClass(element, falseClassName, trueClassName);
 		else			this.replaceClass(element, trueClassName, falseClassName);
 	},
+	
+	/** choose one class from a set */
+	enumClass: function(element, allClassNames, choosenClassName) {
+		this.replaceClassGroup(
+			element,
+			function(it) { return allClassNames.indexOf(it) !== -1; },
+			choosenClassName
+		);
+	},
+	
+	/** replace all classes with a certain prefix with one new of the same prefix */
+	prefixClass: function(element, prefix, choosenSuffix) {
+		this.replaceClassGroup(
+			element,
+			function(it) { return it.startsWith(prefix); },
+			prefix + choosenSuffix
+		);
+	},
+	
+	/** replace all classes matching a predicate with a new one or none (if null) */
+	replaceClassGroup: function(element, relevantFunc, choosenClassName) {
+		var oldSet	= this.getClasses(element);
+		var newSet	= [];
+		for (var i=0; i<oldSet.length; i++) {
+			var old	= oldSet[i];
+			if (!relevantFunc(old))	newSet.push(old);
+		}
+		if (choosenClassName !== null) {
+			newSet.push(choosenClassName);
+		}
+		this.setClasses(element, newSet);
+	},
 
 	//------------------------------------------------------------------------------
 	//## position
