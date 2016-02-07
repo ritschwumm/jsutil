@@ -19,6 +19,11 @@ jsutil.Nullable	= {
 		return it !== null;
 	},
 	
+	// (Nullable[T], Nullable[T]) => Nullable[T]
+	orElse: function(a, b) {
+		return a !== null ? a : b;
+	},
+	
 	// (S => T) => (Nullable[S] => Nullable[T])
 	map: function(func) {
 		return function(it) {
