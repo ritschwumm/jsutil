@@ -1,6 +1,10 @@
 var jsutil	= jsutil || {};
 
 jsutil.Nullable	= {
+	maybe: function(cond, item) {
+		return cond ? item : null;
+	},
+	
 	// Nullable[T] => Boolean
 	isNull: function(it) {
 		return it === null;
@@ -50,6 +54,20 @@ jsutil.Nullable	= {
 	filterNot: function(pred) {
 		return function(it) {
 			return it !== null && !pred(it) ? it : null;
+		};
+	},
+	
+	// (T => Boolean) => Nullable[T] => Boolean
+	every: function(pred) {
+		return function(it) {
+			return it === null || pred(it);
+		};
+	},
+	
+	// (T => Boolean) => Nullable[T] => Boolean
+	some: function(pred) {
+		return function(it) {
+			return it !== null && pred(it);
 		};
 	},
 	

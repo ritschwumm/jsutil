@@ -10,15 +10,33 @@ jsutil.Array = {
 		return item !== null ? [ item ] : [];
 	},
 	
+	maybe: function(cond, item) {
+		return cond ? [ item ] : [];
+	},
+	
 	//------------------------------------------------------------------------------
 	
-	firstOrNull: function(array) {
+	// Array[T] => Nullable[T]
+	firstNullable: function(array) {
 		return array.length !== 0 ? array[0] : null;
 	},
 	
-	lastOrNull: function(array) {
+	// Array[T] => Nullable[T]
+	lastNullable: function(array) {
 		return array.length !== 0 ? array[array.length-1] : null;
 	},
+	
+	// Array[T] => Nullable[T]
+	tailNullable: function(array) {
+		return array.length >= 1 ? arrays.slice(1) : null;
+	},
+	
+	// Array[T] => Nullable[T]
+	initNullable: function(array) {
+		return array.length >= 1 ? arrays.slice(0, array.length-1) : null;
+	},
+	
+	//------------------------------------------------------------------------------
 	
 	count: function(array, pred) {
 		var out	= 0;
@@ -59,6 +77,16 @@ jsutil.Array = {
 			out	= out.concat(array[i]);
 		}
 		return out;
+	},
+	
+	collapseNullable: function(array) {
+		return array.filter(function(it) { return it !== null });
+	},
+	
+	collapseMapNullable: function(array, func) {
+		return array
+				.map(func)
+				.filter(function(it) { return it !== null });
 	},
 
 	//------------------------------------------------------------------------------
