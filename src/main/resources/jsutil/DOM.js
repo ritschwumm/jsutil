@@ -188,8 +188,12 @@ jsutil.DOM = {
 	/** replaces a class in an element with another */
 	replaceClass: function(element, oldClassName, newClassName) {
 		var set	= this.getClasses(element);
-		if (set.contains(oldClassName))		set.remove(oldClassName);
-		if (!set.contains(newClassName))	set.push(newClassName);
+		if (set.contains(oldClassName)) {
+			set.remove(oldClassName);
+			if (!set.contains(newClassName)) {
+				set.push(newClassName);
+			}
+		}
 		this.setClasses(element, set);
 	},
 	
