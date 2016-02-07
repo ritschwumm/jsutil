@@ -15,12 +15,12 @@ jsutil.Loc	= function(urlStr) {
 	var	m	= this.parser.exec(urlStr);
 	if (!m)	throw new Error("cannot parse URL: " + urlStr);
 	this.local		= !m[1];
-	this.protocol	= m[2] ? m[2] : null;							// http:
-	this.host		= m[3] ? m[3] : null;							// de.wikipedia.org
-	this.port		= m[4] ? parseInt(m[4].substring(1)) : null;	// 80
-	this.pathname	= m[5] ? m[5] : null;							// /wiki/Test
-	this.search		= m[6] ? m[6] : null;							// ?action=edit
-	this.hash		= m[7] ? m[7] : null;							// #Industry
+	this.protocol	= m[2] ? m[2] : null;								// http:
+	this.host		= m[3] ? m[3] : null;								// de.wikipedia.org
+	this.port		= m[4] ? parseInt(m[4].substring(1), 10) : null;	// 80
+	this.pathname	= m[5] ? m[5] : null;								// /wiki/Test
+	this.search		= m[6] ? m[6] : null;								// ?action=edit
+	this.hash		= m[7] ? m[7] : null;								// #Industry
 };
 jsutil.Loc.prototype = {
 	/** matches a global or local URL */

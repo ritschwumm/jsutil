@@ -151,18 +151,18 @@ jsutil.NodeW.prototype	= {
 	},
 
 	pos: function() {
-		return jsutil.DOM.pos(this.peer);
+		return jsutil.DOM.elementPos(this.peer);
 	},
 
 	size: function() {
-		return jsutil.DOM.size(this.peer);
+		return jsutil.DOM.elementSize(this.peer);
 	},
 
 	parentPos: function() {
-		return jsutil.DOM.parentPos(this.peer);
+		return jsutil.DOM.elementParentPos(this.peer);
 	},
 	
 	move: function(pos) {
-		return jsutil.DOM.move(this.peer, pos);
+		return jsutil.DOM.moveElement(this.peer, pos);
 	}//,
 };
