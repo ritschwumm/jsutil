@@ -39,5 +39,12 @@ jsutil.Cell.prototype	= {
 	/** remove a listener added with onChange or onValue */
 	off: function(func) {
 		this.emitter.off(func);
+	},
+	
+	//------------------------------------------------------------------------------
+	
+	/** remove all listeners */
+	dispose: function() {
+		this.emitter.dispose();
 	}//,
 };

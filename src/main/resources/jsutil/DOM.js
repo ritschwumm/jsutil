@@ -22,6 +22,12 @@ jsutil.DOM = {
 	get: function(id) {
 		return document.getElementById(id);
 	},
+	
+	/** find an element in document by its id */
+	getW: function(id) {
+		var el	= this.get(id);
+		return el && jsutil.NodeW.of(el);
+	},
 
 	/**
     * find descendants of an ancestor by tagName, className and index 
@@ -193,6 +199,13 @@ jsutil.DOM = {
 		this.insertEndMany(target, replacements);
 	},
 
+	//------------------------------------------------------------------------------
+	//## style
+	
+	display: function(element, on) {
+		element.style.display	= on ? "" : "none";
+	},
+	
 	//------------------------------------------------------------------------------
 	//## css classes
 

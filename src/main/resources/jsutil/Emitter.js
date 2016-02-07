@@ -9,6 +9,8 @@ jsutil.Emitter.prototype	= {
 		this.listeners.forEach(function(it) { it(value); });
 	},
 	
+	//------------------------------------------------------------------------------
+	
 	/** add a listener to be called on fire */
 	on: function(func) {
 		this.listeners.push(func);
@@ -20,5 +22,12 @@ jsutil.Emitter.prototype	= {
 		if (index === -1)	return false;
 		this.listeners.splice(index, 1);
 		return true;
+	},
+	
+	//------------------------------------------------------------------------------
+	
+	/** remove all listeners */
+	dispose: function() {
+		this.listeners	= [];
 	}//,
 };

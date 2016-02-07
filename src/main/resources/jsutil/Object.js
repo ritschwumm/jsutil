@@ -1,7 +1,5 @@
 var jsutil	= jsutil || {};
 
-// NOTE: these do _not_ break for (foo in bar)
-
 /** Object helper functions */
 jsutil.Object = {
 	/** return a type-indicating string */
@@ -21,36 +19,44 @@ jsutil.Object = {
 	/** returns all keys as an Array */
 	keys: function(obj) {
 		var	out	= [];
-		for (var key in obj)
-				if (obj.hasOwnProperty(key))
-						out.push(key);
+		for (var key in obj) {
+			if (obj.hasOwnProperty(key)) {
+				out.push(key);
+			}
+		}
 		return out;
 	},
 	
 	/** returns the value behind every key */
 	values: function(obj) {
 		var	out	= [];
-		for (var key in obj)
-				if (obj.hasOwnProperty(key))
-						out.push(obj[key]);
+		for (var key in obj) {
+			if (obj.hasOwnProperty(key)) {
+				out.push(obj[key]);
+			}
+		}
 		return out;
 	},
 	
 	/** copies an Object's properties into an new Object */
 	clone: function(obj) {
 		var	out	= {};
-		for (var key in obj)
-				if (obj.hasOwnProperty(key))	
-						out[key] = obj[key];
+		for (var key in obj) {
+			if (obj.hasOwnProperty(key)) {
+				out[key] = obj[key];
+			}
+		}
 		return out;
 	},
 	
 	/** returns an object's slots as an Array of Pairs */
 	toPairs: function(obj) {
 		var	out	= [];
-		for (var key in obj)
-				if (obj.hasOwnProperty(key))
-						out.push([key, obj[key]]);
+		for (var key in obj) {
+			if (obj.hasOwnProperty(key)) {
+				out.push([key, obj[key]]);
+			}
+		}
 		return out;
 	},
 	
@@ -60,6 +66,16 @@ jsutil.Object = {
 		for (var i=0; i<pairs.length; i++) {
 			var	pair		= pairs[i];
 			out[pair[0]]	= pair[1];
+		}
+		return out;
+	},
+	
+	mapValues: function(obj, func) {
+		var	out	= {};
+		for (var key in obj) {
+			if (obj.hasOwnProperty(key)) {
+				out[key]	= func(obj[key]);
+			}
 		}
 		return out;
 	}//,

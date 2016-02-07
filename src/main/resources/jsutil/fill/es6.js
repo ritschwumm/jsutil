@@ -82,4 +82,3 @@ if (!String.prototype.repeat)
 				return out;
 			}
 		};
-
