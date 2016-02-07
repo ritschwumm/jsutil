@@ -2,8 +2,8 @@ var jsutil	= jsutil || {};
 
 /** ajax helper */
 jsutil.Ajax = {
-	/** 
-	 * create and use an XMLHttpRequest with named parameters 
+	/**
+	 * create and use an XMLHttpRequest with named parameters
 	 *
 	 * data
 	 *		method		optional string, defaults to GET
@@ -83,7 +83,7 @@ jsutil.Ajax = {
 		/*
 		// override mime type if wanted
 		if (args.mimeType && client.overrideMimeType) {
-			client.overrideMimeType(args.mimeType); 
+			client.overrideMimeType(args.mimeType);
 		}
 		*/
 		
@@ -130,9 +130,9 @@ jsutil.Ajax = {
 	//------------------------------------------------------------------------------
 	//## private
 	
-	/** 
+	/**
 	 * url-encode arguments
-	 * args may be an Array of Pair of String or a Map from String to String 
+	 * args may be an Array of Pair of String or a Map from String to String
 	 */
 	encodeUrlArgs: function(args) {
 		if (args.constructor !== Array)	args	= this.hashToPairs(args);
@@ -140,8 +140,8 @@ jsutil.Ajax = {
 	},
 	
 	/**
-	 * encode arguments into application/x-www-form-urlencoded 
-	 * args may be an Array of Pair of String or a Map from String to String 
+	 * encode arguments into application/x-www-form-urlencoded
+	 * args may be an Array of Pair of String or a Map from String to String
 	 */
 	encodeFormArgs: function(args) {
 		if (args.constructor !== Array)	args	= this.hashToPairs(args);
@@ -151,7 +151,7 @@ jsutil.Ajax = {
 	/** compile an Array of Pairs of Strings into the &name=value format */
 	encodeArgPairs: function(args, encodeFunc) {
 		var	out	= "";
-		for (var i=0; i<args.length; i++) {                       
+		for (var i=0; i<args.length; i++) {
 			var	pair	= args[i];
 			if (pair.constructor !== Array)	throw new Error("expected a Pair: " + pair);
 			if (pair.length !== 2)			throw new Error("expected a Pair: " + pair);
@@ -173,11 +173,11 @@ jsutil.Ajax = {
 		return value;
 	},
 	
-	/** 
-	 * converts a hash into an Array of Pairs (2-element Arrays). 
-	 * null values generate no Pair, 
-	 * array values generate multiple Pairs, 
-	 * other values are toString()ed 
+	/**
+	 * converts a hash into an Array of Pairs (2-element Arrays).
+	 * null values generate no Pair,
+	 * array values generate multiple Pairs,
+	 * other values are toString()ed
 	 */
 	hashToPairs: function(map) {
 		var	out	= [];

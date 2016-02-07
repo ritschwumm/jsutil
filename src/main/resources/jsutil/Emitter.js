@@ -11,9 +11,15 @@ jsutil.Emitter.prototype	= {
 	
 	//------------------------------------------------------------------------------
 	
-	/** add a listener to be called on fire */
+	/** add a listener to be called on fire, returns a disposable */
 	on: function(func) {
 		this.listeners.push(func);
+		var self	= this;
+		return {
+			dispose: function() {
+				self.off(func);
+			}
+		};
 	},
 	
 	/** remove a listener added with on */

@@ -17,13 +17,20 @@ if (!Object.assign)
 
 /** can be used to copy a function's arguments into a real Array */
 if (!Array.from)
+		// TODO original can map
 		Array.from	= function(args) {
 			return Array.prototype.slice.apply(args);
 		};
 		
 if (!Array.of)
-		Array.of	= function(args) {
-			return Array.prototype.slice.call(args);
+		Array.of	= function() {
+			return Array.prototype.slice.call(arguments);
+		};
+		
+/** whether this array contains an element */
+if (!Array.prototype.contains)
+		Array.prototype.contains = function(element) {
+			return this.indexOf(element) !== -1;
 		};
 
 if (!Array.prototype.find)

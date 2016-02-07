@@ -26,8 +26,8 @@ String.prototype.template = function(args) {
 String.prototype.template2 = function(prefix, suffix, args) {
 	// /\$\{([^}]+?)\}/g
 	var	re	= new RegExp(prefix.escapeRE() + "([a-zA-Z]+?)" + suffix.escapeRE(), "g");
-	return this.replace(re, function($0, $1) { 
-		var arg = args[$1]; 
+	return this.replace(re, function($0, $1) {
+		var arg = args[$1];
 		return arg !== undefined ? arg : $0;
 	});
 };

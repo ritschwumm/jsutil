@@ -1,4 +1,4 @@
-/** 
+/**
  * call this thunk after some millis.
  * optionally call the given continuation with the result afterwards.
  * returns an object with an cancel method to prevent this thunk from being called.
@@ -7,9 +7,9 @@
 Function.prototype.callAfter = function(millis, continuation) {
 	var	self	= this;
 	var running	= false;
-	function execute() { 
-		running = true; 
-		var	out	= self.call(); 
+	function execute() {
+		running = true;
+		var	out	= self.call();
 		if (continuation)	continuation(out);
 	}
 	var	timer	= window.setTimeout(execute, millis);
@@ -19,5 +19,5 @@ Function.prototype.callAfter = function(millis, continuation) {
 	}
 	return {
 		cancel: cancel
-	}; 
+	};
 };

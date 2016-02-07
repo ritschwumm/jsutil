@@ -24,7 +24,7 @@ jsutil.Cookie = {
 
 	/** delete a named cookie */
 	del: function(key) {
-		this.set(key, "", 
+		this.set(key, "",
 				this.timeout(this.TTL_DELETE));
 	},
 

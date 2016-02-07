@@ -12,15 +12,6 @@ Array.prototype.remove = function(element) {
 //------------------------------------------------------------------------------
 //## not mutating
 
-/** returns a new Array without the given element */
-Array.prototype.cloneRemove = function(element) {
-	var	index	= this.indexOf(element);
-	if (index === -1)	return this;
-	var out	= [].concat(this);
-	out.splice(index, 1);
-	return out;
-};
-
 /** filter with an inverted predicate */
 Array.prototype.filterNot	= function(predicate, thisVal) {
 	var len	= this.length;
@@ -45,13 +36,7 @@ Array.prototype.zip	= function(that) {
 	return out;
 };
 
-// TODO this is defined in ES6
-/** whether this array contains an element */
-Array.prototype.contains = function(element) {
-	return this.indexOf(element) !== -1;
-};
-
-/** two partitions in a 2-element Array, first the partition where the predicate returned true */ 
+/** two partitions in a 2-element Array, first the partition where the predicate returned true */
 Array.prototype.partition = function(predicate) {
 	var	yes	= [];
 	var no	= [];
@@ -83,13 +68,6 @@ Array.prototype.flatMap = function(func, thisVal) {
 /** returns a copy of this Array */
 Array.prototype.clone = function() {
 	return [].concat(this);
-};
-
-/** returns a reverse copy of this Array */
-Array.prototype.cloneReverse = function() {
-	var	out	= [].concat(this);
-	out.reverse();
-	return out;
 };
 
 /** return a new Array with a separator inserted between every element of the Array */

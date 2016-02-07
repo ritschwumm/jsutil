@@ -51,7 +51,7 @@ jsutil.Loc.prototype = {
 		for (var i=0; i<split.length; i++) {
 			var	parts	= split[i].split("=");
 			out.push([
-				decodeURIComponent(parts[0]), 
+				decodeURIComponent(parts[0]),
 				decodeURIComponent(parts[1])
 			]);
 		}

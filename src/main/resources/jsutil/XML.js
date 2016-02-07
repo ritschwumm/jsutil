@@ -24,7 +24,7 @@ jsutil.XML = {
 	if (window.ActiveXObject) {
 		var xmldoc = new ActiveXObject("Microsoft.XMLDOM");
 		xmldoc.async = "false";
-		var ret = xmldoc.loadXML(string);      
+		var ret = xmldoc.loadXML(string);
 		if (ret)	return xmldoc.documentElement;
 	}
 	return null;
@@ -39,7 +39,7 @@ jsutil.XML = {
 	//## escaping
 	
 	/** escapes XML metacharacters */
-	encode: function(str) { 
+	encode: function(str) {
 		return str.replace(/&/g,	'&amp;')
 					.replace(/</g,	'&lt;')
 					.replace(/>/g,	'&gt;');

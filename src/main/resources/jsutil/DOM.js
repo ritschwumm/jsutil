@@ -30,7 +30,7 @@ jsutil.DOM = {
 	},
 
 	/**
-    * find descendants of an ancestor by tagName, className and index 
+    * find descendants of an ancestor by tagName, className and index
 	* tagName, className and index are optional
 	* returns a single element when index exists or an Array of elements if not
 	*/
@@ -181,7 +181,7 @@ jsutil.DOM = {
 	
 	/** replace a target with a replacement node */
 	replaceNode: function(target, replacement) {
-		target.parentNode.replaceChild(replacement, target); 
+		target.parentNode.replaceChild(replacement, target);
 	},
 	
 	/** replace a target with many replacement nodes */

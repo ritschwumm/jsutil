@@ -31,7 +31,7 @@ if (window.console) {
 			window.console[key]	= jsutil.Console[key];
 		}
 	}
-} 
+}
 else {
 	window.console	= jsutil.Console;
 }

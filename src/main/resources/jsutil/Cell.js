@@ -25,15 +25,15 @@ jsutil.Cell.prototype	= {
 	
 	//------------------------------------------------------------------------------
 	
-	/** add a listener to be called whenever the value changes */
+	/** add a listener to be called whenever the value changes, returns a disposable */
 	onChange: function(func) {
-		this.emitter.on(func);
+		return this.emitter.on(func);
 	},
 	
-	/** add a listener to be called immediately and whenever the value changes */
+	/** add a listener to be called immediately and whenever the value changes, returns a disposable */
 	onValue: function(func) {
 		func(this.get());
-		this.emitter.on(func);
+		return this.emitter.on(func);
 	},
 	
 	/** remove a listener added with onChange or onValue */

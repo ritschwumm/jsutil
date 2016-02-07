@@ -31,7 +31,7 @@ jsutil.Form = {
 	//## serializer
 	
 	/**
-	 * parses HTMLFormElement and its HTML*Element children 
+	 * parses HTMLFormElement and its HTML*Element children
 	 * into an Array of name/value-pairs (2-element Arrays).
 	 * these pairs can be used as bodyArgs parameter for jsutil.Ajax.call.
 	 *
@@ -46,10 +46,10 @@ jsutil.Form = {
 			if (!element.name)		continue;
 			if (element.disabled)	continue;
 		
-			var	handlingButton = element.type === "submit" 
-								|| element.type === "image" 
+			var	handlingButton = element.type === "submit"
+								|| element.type === "image"
 								|| element.type === "button";
-			if (handlingButton 
+			if (handlingButton
 			&& element.name !== buttonName)	continue;
 			
 			var	pairs	= this.elementPairs(element);
@@ -58,9 +58,9 @@ jsutil.Form = {
 		return out;
 	},
 	
-	/** 
+	/**
 	 * returns an Array of Pairs for a single input element.
-	 * in most cases, it contains zero or one Pair. 
+	 * in most cases, it contains zero or one Pair.
 	 * more than one are possible for select-multiple.
 	 */
 	elementPairs: function(element) {

@@ -15,7 +15,7 @@ if (!Object.create)
 if (!Function.prototype.bind)
 		Function.prototype.bind = function(oThis) {
 			if (typeof this !== "function")	throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
-			var aArgs	= Array.prototype.slice.call(arguments, 1); 
+			var aArgs	= Array.prototype.slice.call(arguments, 1);
 			var fToBind	= this;
 			var	fNOP	= function() {};
 			var fBound	= function() {
@@ -208,7 +208,7 @@ if (!Date.prototype.toISOString)
 					'0'	+ this.getUTCHours()		+ ':'	+
 					'0'	+ this.getUTCMinutes()		+ ':'	+
 					'0'	+ this.getUTCSeconds()
-				).replace(/\d(\d\d)/g, "$1")		+ '.'	+ 
+				).replace(/\d(\d\d)/g, "$1")		+ '.'	+
 				(this.getUTCMilliseconds() / 1000).toFixed(3).slice(2, 5)	+ 'Z';
 		};
 
