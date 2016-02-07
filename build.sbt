@@ -1,6 +1,6 @@
 name				:= "jsutil"
 organization		:= "de.djini"
-version				:= "0.21.0"
+version				:= "0.22.0"
 
 crossPaths			:= false
 autoScalaLibrary	:= false

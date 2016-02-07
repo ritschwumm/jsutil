@@ -12,6 +12,10 @@ jsutil.NodeW.prototype	= {
 		return jsutil.DOM.fetch(this.peer, tagName. className, index);
 	},
 	
+	attachOnce: function(event, handler) {
+		jsutil.DOM.attachOnce(this.peer, event, handler);
+	},
+	
 	//------------------------------------------------------------------------------
 	
 	nextElement: function(nodeName) {

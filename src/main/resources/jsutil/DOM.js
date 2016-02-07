@@ -9,6 +9,15 @@ jsutil.DOM = {
 	onLoad: function(func) {
 		window.addEventListener("DOMContentLoaded", func, false);
 	},
+	
+	/** attach an event listener, remove it when it fired */
+	attachOnce: function(element, event, handler) {
+		function listener(ev) {
+			element.removeEventListener(event, listener, false);
+			handler(ev);
+		}
+		element.addEventListener(event, listener, false);
+	},
 
 	//------------------------------------------------------------------------------
 	//## find
