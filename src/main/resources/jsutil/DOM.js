@@ -334,7 +334,6 @@ jsutil.DOM = {
 
 	/** document base coordinates for an elements parent */
 	elementParentPos: function(element) {
-		// TODO inline in elementPos?
 		var	pos	= { x: 0, y: 0 };
 		for (;;) {
 			var	mode = window.getComputedStyle(element, null).position;

@@ -122,7 +122,9 @@ jsutil.Ajax = {
 				if (client.timer)	clearTimeout(client.timer);
 				this.aborted	= true;
 				try { client.abort(); }
-				catch (e) {}	// TODO log this somewhere
+				catch (e) {
+					// TODO log this somewhere
+				}
 			}//,
 		};
 	},
