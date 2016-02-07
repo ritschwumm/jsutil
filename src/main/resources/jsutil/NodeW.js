@@ -76,6 +76,10 @@ jsutil.NodeW.prototype	= {
 		return jsutil.DOM.removeChildren(this.peer);
 	},
 	
+	removeChildMany: function(children) {
+		return jsutil.DOM.removeChildMany(this.peer, children);
+	},
+	
 	replace: function(replacement) {
 		return jsutil.DOM.replaceNode(this.peer, replacement);
 	},

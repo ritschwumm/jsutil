@@ -197,6 +197,13 @@ jsutil.DOM = {
 		node.innerHTML	= "";
 	},
 	
+	removeChildMany: function(node, children) {
+		for (var i=0; i<children.length; i++) {
+			var child	= children[i];
+			node.removeChild(child);
+		}
+	},
+	
 	//------------------------------------------------------------------------------
 	//## replace
 	

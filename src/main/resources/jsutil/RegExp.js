@@ -15,10 +15,14 @@ jsutil.RegExp = {
 		return new RegExp(regexp.source, flags);
 	},
 	
+	source: function(regexp) {
+		return regexp.source;
+	},
+	
 	concat: function(regexpArray, flags) {
 		return new RegExp(
 			regexpArray
-			.map(function(it) { return it.source; })
+			.map(jsutil.RegExp.source)
 			.join(""),
 			flags || ""
 		);
