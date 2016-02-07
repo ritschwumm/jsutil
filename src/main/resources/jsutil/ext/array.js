@@ -98,3 +98,31 @@ Array.prototype.mapBy = function(keyFunc) {
 	}
 	return out;
 };
+
+/** new array with one item removed */
+Array.prototype.removed	= function(item) {
+	var out	= this.slice();
+	out.remove(item);
+	return out;
+};
+
+/** (unstable) sort returning a new array */
+Array.prototype.sorted	= function(compare) {
+	var out	= this.slice();
+	out.sort(compare);
+	return out;
+};
+
+/** stable sort returning a new array */
+Array.prototype.sortedStable	= function(compare) {
+	var tmp	= this.map(function(it, idx) {
+		return { idx: idx, it: it };
+	});
+	tmp.sort(function(a, b) {
+		var cmp	= compare(a.it, b.it);
+		return cmp === 0 ? a.idx - b.idx : cmp;
+	});
+	return tmp.map(function(o) {
+		return o.it;
+	});
+};

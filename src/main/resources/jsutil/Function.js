@@ -1,6 +1,8 @@
 var jsutil	= jsutil || {};
 
 jsutil.Function	= {
-	identity:	function(x) { return x; },
-	constant:	function(c) { return function(v) { return c; }; }
+	identity:	function(x)		{ return x; },
+	constant:	function(x)		{ return function(_) { return x; }; },
+	compose:	function(a, b)	{ return function(x) { return a(b(x));	}; },
+	andThen:	function(a, b)	{ return function(x) { return b(a(x));	}; }//,
 };
