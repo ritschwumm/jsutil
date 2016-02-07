@@ -84,8 +84,8 @@ jsutil.Nullable	= {
 	chain: function(func1) {
 		return function(func2) {
 			return function(it) {
-				var tmp	= func(it);
-				return tmp !== null ? funct(tmp) : null;
+				var tmp	= func1(it);
+				return tmp !== null ? func2(tmp) : null;
 			};
 		};
 	}//,

@@ -32,12 +32,12 @@ jsutil.Array = {
 	
 	// Array[T] => Nullable[T]
 	tailNullable: function(array) {
-		return array.length >= 1 ? arrays.slice(1) : null;
+		return array.length >= 1 ? array.slice(1) : null;
 	},
 	
 	// Array[T] => Nullable[T]
 	initNullable: function(array) {
-		return array.length >= 1 ? arrays.slice(0, array.length-1) : null;
+		return array.length >= 1 ? array.slice(0, array.length-1) : null;
 	},
 	
 	//------------------------------------------------------------------------------
@@ -84,13 +84,13 @@ jsutil.Array = {
 	},
 	
 	collapseNullable: function(array) {
-		return array.filter(function(it) { return it !== null });
+		return array.filter(function(it) { return it !== null; });
 	},
 	
 	collapseMapNullable: function(array, func) {
 		return array
 				.map(func)
-				.filter(function(it) { return it !== null });
+				.filter(function(it) { return it !== null; });
 	},
 
 	//------------------------------------------------------------------------------
