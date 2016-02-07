@@ -3,11 +3,13 @@
 
 /** copies an object's properties into another object */
 if (!Object.assign)
-		// TODO original allows multiple sources
-		Object.assign	= function(target, source) {
-			for (var key in source) {
-				if (source.hasOwnProperty(key)) {
-					target[key] = source[key];
+		Object.assign	= function(target/*, source...*/) {
+			for (var i=1; i<arguments.length; i++) {
+				var source	= arguments[i];
+				for (var key in source) {
+					if (source.hasOwnProperty(key)) {
+						target[key] = source[key];
+					}
 				}
 			}
 		};
@@ -17,9 +19,10 @@ if (!Object.assign)
 
 /** can be used to copy a function's arguments into a real Array */
 if (!Array.from)
-		// TODO original can map
 		Array.from	= function(args) {
-			return Array.prototype.slice.apply(args);
+			var raw	= Array.prototype.slice.apply(args);
+			if (arguments.length > 1)	return raw.map(arguments[1], arguments[2]);
+			else						return raw;
 		};
 		
 if (!Array.of)

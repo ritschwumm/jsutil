@@ -2,6 +2,24 @@ var jsutil	= jsutil || {};
 
 /** Object helper functions */
 jsutil.Object = {
+	single: function(key, value) {
+		var out	= {};
+		out[key]	= value;
+		return out;
+	},
+	
+	/** copy own properties from multiple objects into one. properties defined later win */
+	merge: function(/* object... */) {
+		var	out	= {};
+		for (var i=0; i<arguments.length; i++) {
+			var a	= arguments[i];
+			for (var key in a) {
+				if (a.hasOwnProperty(key))	out[key]	= a[key];
+			}
+		}
+		return out;
+	},
+	
 	/** return a type-indicating string */
 	type: function(obj) {
 		return	obj === null	? "null"		:
