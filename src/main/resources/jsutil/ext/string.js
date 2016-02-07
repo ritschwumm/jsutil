@@ -1,8 +1,3 @@
-/** remove whitespace from both ends */
-String.prototype.trim = function() {
-	return this.replace(/^\s+|\s+$/g, "");
-};
-
 /** return text without prefix or null */
 String.prototype.scan = function(s) {
 	return this.substring(0, s.length) === s
@@ -15,16 +10,6 @@ String.prototype.scanNoCase = function(s) {
 	return this.substring(0, s.length).toLowerCase() === s.toLowerCase()
 			? this.substring(s.length)
 			: null;
-};
-
-/** true when the string starts with the pattern */
-String.prototype.startsWith = function(s) {
-	return this.indexOf(s) === 0;
-};
-
-/** true when the string ends in the pattern */
-String.prototype.endsWith = function(s) {
-	return this.lastIndexOf(s) === this.length - s.length;
 };
 
 /** escapes characters to make them usable as a literal in a RegExp */

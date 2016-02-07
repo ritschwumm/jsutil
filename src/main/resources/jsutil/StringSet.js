@@ -1,23 +1,22 @@
 var jsutil	= jsutil || {};
 
-// TODO implement filter, find, map, flatMap, flatten aso. 
-
 jsutil.StringSet	= function() {
 	this.value	= {};
-}
+};
+
+jsutil.StringSet.empty				= new jsutil.StringSet();
+jsutil.StringSet.empty.putMutate	= function() { throw "don't mutate StringSet.empty" };
+jsutil.StringSet.empty.removeMutate	= function() { throw "don't mutate StringSet.empty" };
+
+jsutil.StringSet.fromArray	= function(array) {
+	var out	= new jsutil.StringSet();
+	for (var i=0; i<array.length; i++) {
+		out.putMutate(array[i]);
+	}
+	return out;
+};
+
 jsutil.StringSet.prototype	= {
-	/** mutating operation */
-	putMutate: function(it) {
-		this.value[it]	= 1;
-	},
-	
-	/** mutating operation */
-	removeMutate: function(it) {
-		delete this.value[it];
-	},
-	
-	//------------------------------------------------------------------------------
-	
 	contains: function(it) {
 		return this.value[it] === 1;
 	},
@@ -74,6 +73,28 @@ jsutil.StringSet.prototype	= {
 		return out;
 	},
 	
+	/** returns a new StringSet without the matching elements */
+	filter: function(pred, thisObject) {
+		var out	= new jsutil.StringSet();
+		for (var key in this.value) {
+			if (this.hasOwnProperty(key) && pred.call(thisObject, key)) {
+				out.putMutate(key);
+			}
+		}
+		return out;
+	},
+	
+	/** filter with an inverted predicate */
+	filterNot: function(pred, thisObject) {
+		var out	= new jsutil.StringSet();
+		for (var key in this.value) {
+			if (this.hasOwnProperty(key) && !pred.call(thisObject, key)) {
+				out.putMutate(key);
+			}
+		}
+		return out;
+	},
+	
 	/** returns a new StringSet */
 	clone: function() {
 		var out	= new jsutil.StringSet();
@@ -87,17 +108,18 @@ jsutil.StringSet.prototype	= {
 	
 	toArray: function() {
 		return jsutil.Object.keys(this.value);
+	},
+	
+	//------------------------------------------------------------------------------
+	//## private
+	
+	/** mutating operation */
+	putMutate: function(it) {
+		this.value[it]	= 1;
+	},
+	
+	/** mutating operation */
+	removeMutate: function(it) {
+		delete this.value[it];
 	}//,
-};
-
-jsutil.StringSet.empty	= new jsutil.StringSet();
-jsutil.StringSet.empty.putMutate	= function() { throw "don't mutate StringSet.empty" };
-jsutil.StringSet.empty.removeMutate	= function() { throw "don't mutate StringSet.empty" };
-
-jsutil.StringSet.fromArray	= function(array) {
-	var out	= new jsutil.StringSet();
-	for (var i=0; i<array.length; i++) {
-		out.putMutate(array[i]);
-	}
-	return out;
 };

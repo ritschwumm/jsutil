@@ -112,7 +112,7 @@ Array.prototype.inject = function(func, thisVal) {
 };
 		
 /** use a function to extract keys and build an Object */
-Array.prototype.indexWith = function(keyFunc) {
+Array.prototype.mapBy = function(keyFunc) {
 	var	out	= {};
 	for (var i=0; i<this.length; i++) {
 		var	item	= this[i];
