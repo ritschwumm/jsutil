@@ -112,12 +112,12 @@ jsutil.NodeW.prototype	= {
 		return jsutil.DOM.hasClass(this.peer, className);
 	},
 
-	addClass: function(className) {
-		return jsutil.DOM.addClass(this.peer, className);
+	putClass: function(className) {
+		return jsutil.DOM.putClass(this.peer, className);
 	},
 
-	removeClass: function(className) {
-		return jsutil.DOM.removeClass(this.peer, className);
+	delClass: function(className) {
+		jsutil.DOM.delClass(this.peer, className);
 	},
 
 	replaceClass: function(oldClassName, newClassName) {

@@ -254,43 +254,43 @@ jsutil.DOM = {
 	},
 
 	/** adds a class to an element */
-	addClass: function(element, className) {
+	putClass: function(element, className) {
 		var set	= this.getClasses(element);
 		var ok	= !set.contains(className);
 		if (ok)	{
 			set.push(className);
 			this.setClasses(element, set);
 		}
-		return ok;
 	},
 
-	/** removes a class to an element */
-	removeClass: function(element, className) {
-		var set	= this.getClasses(element);
-		var ok	= set.contains(className);
-		if (ok)	{
-			set.remove(className);
-			this.setClasses(element, set);
-		}
-		return ok;
+	/** removes a class from an element */
+	delClass: function(element, className) {
+		var set		= this.getClasses(element);
+		var index	= set.indexOf(className);
+		if (index === -1)	return;
+		set.splice(index, 1);
+		this.setClasses(element, set);
 	},
 
 	/** replaces a class in an element with another */
 	replaceClass: function(element, oldClassName, newClassName) {
 		var set	= this.getClasses(element);
-		if (set.contains(oldClassName)) {
-			set.remove(oldClassName);
-			if (!set.contains(newClassName)) {
-				set.push(newClassName);
-			}
-		}
+		
+		var oldIndex	= set.indexOf(oldClassName);
+		if (oldIndex === -1)	return;
+		set.splice(oldIndex, 1);
+		
+		var newIndex	= set.indexOf(newClassName);
+		if (newIndex !== -1)	return;
+		set.push(newClassName);
+		
 		this.setClasses(element, set);
 	},
 	
 	/** sets or unsets a class on an element */
 	updateClass: function(element, className, active) {
-		if (active)	this.addClass(element, className);
-		else		this.removeClass(element, className);
+		if (active)	this.putClass(element, className);
+		else		this.delClass(element, className);
 	},
 	
 	/** switches between two different classes */

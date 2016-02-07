@@ -1,17 +1,3 @@
-//------------------------------------------------------------------------------
-//## mutating
-
-/** mutating operation: removes an element */
-Array.prototype.remove = function(element) {
-	var	index	= this.indexOf(element);
-	if (index === -1)	return false;
-	this.splice(index, 1);
-	return true;
-};
-
-//------------------------------------------------------------------------------
-//## not mutating
-
 /** filter with an inverted predicate */
 Array.prototype.filterNot	= function(predicate, thisVal) {
 	var len	= this.length;
@@ -100,9 +86,12 @@ Array.prototype.mapBy = function(keyFunc) {
 };
 
 /** new array with one item removed */
-Array.prototype.removed	= function(item) {
+Array.prototype.without	= function(item) {
+	var	index	= this.indexOf(element);
+	if (index === -1)	return this;
+	
 	var out	= this.slice();
-	out.remove(item);
+	out.splice(index, 1);
 	return out;
 };
 
