@@ -20,6 +20,13 @@ jsutil.Object = {
 		return out;
 	},
 	
+	/** curried field access */
+	pluck: function(key) {
+		return function(obj) {
+			return obj[key];
+		};
+	},
+	
 	/** return a type-indicating string */
 	type: function(obj) {
 		return	obj === null	? "null"		:

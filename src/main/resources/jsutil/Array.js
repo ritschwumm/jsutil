@@ -11,6 +11,32 @@ jsutil.Array = {
 	},
 	
 	//------------------------------------------------------------------------------
+	
+	firstOrNull: function(array) {
+		return array.length !== 0 ? array[0] : null;
+	},
+	
+	lastOrNull: function(array) {
+		return array.length !== 0 ? array[array.length-1] : null;
+	},
+	
+	count: function(array, pred) {
+		var out	= 0;
+		for (var i=0; i<array.length; i++) {
+			out	+= pred(array[i]) ? 1 : 0;
+		}
+		return out;
+	},
+	
+	countNot: function(array, pred) {
+		var out	= 0;
+		for (var i=0; i<array.length; i++) {
+			out	+= pred(array[i]) ? 0 : 1;
+		}
+		return out;
+	},
+	
+	//------------------------------------------------------------------------------
 	//## math for number-arrays
 	
 	sum: function(array) {
