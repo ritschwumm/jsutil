@@ -139,10 +139,6 @@ jsutil.NodeW.prototype	= {
 	prefixClass: function(prefix, choosenSuffix) {
 		return jsutil.DOM.prefixClass(this.peer, prefix, choosenSuffix);
 	},
-	
-	replaceClassGroup: function(relevantPred, choosenClassName) {
-		return jsutil.DOM.replaceClassGroup(this.peer, relevantPred, choosenClassName);
-	},
 
 	//------------------------------------------------------------------------------
 	

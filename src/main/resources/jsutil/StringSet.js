@@ -5,21 +5,27 @@ jsutil.StringSet	= function() {
 };
 
 jsutil.StringSet.fromArray	= function(array) {
+	if (array.length === 0)	return jsutil.StringSet.empty;
+	
 	var out	= new jsutil.StringSet();
 	for (var i=0; i<array.length; i++) {
-		out.putMutate(array[i]);
+		out.addMutate(array[i]);
 	}
 	return out;
 };
 
 jsutil.StringSet.prototype	= {
 	contains: function(it) {
-		return this.value[it] === 1;
+		return this.value.hasOwnProperty(it);
 	},
 	
-	put: function(it) {
+	lacks: function(it) {
+		return !this.contains(it);
+	},
+	
+	add: function(it) {
 		var out	= this.clone();
-		out.putMutate(it);
+		out.addMutate(it);
 		return out;
 	},
 	
@@ -32,13 +38,13 @@ jsutil.StringSet.prototype	= {
 	union: function(that) {
 		var out	= new jsutil.StringSet();
 		for (var key in this.value) {
-			if (this.value.hasOwnProperty(key)) {
-				out.putMutate(key);
+			if (this.contains(key)) {
+				out.addMutate(key);
 			}
 		}
 		for (var key in that.value) {
-			if (that.value.hasOwnProperty(key)) {
-				out.putMutate(key);
+			if (that.contains(key)) {
+				out.addMutate(key);
 			}
 		}
 		return out;
@@ -47,8 +53,8 @@ jsutil.StringSet.prototype	= {
 	intersection: function(that) {
 		var out	= new jsutil.StringSet();
 		for (var key in this.value) {
-			if (this.value.hasOwnProperty(key) && that.value.hasOwnProperty(key)) {
-				out.putMutate(key);
+			if (this.contains(key) && that.contains(key)) {
+				out.addMutate(key);
 			}
 		}
 		return out;
@@ -57,8 +63,8 @@ jsutil.StringSet.prototype	= {
 	difference: function(that) {
 		var out	= new jsutil.StringSet();
 		for (var key in this.value) {
-			if (this.value.hasOwnProperty(key) && !that.value.hasOwnProperty(key)) {
-				out.putMutate(key);
+			if (this.contains(key) && !that.contains(key)) {
+				out.addMutate(key);
 			}
 		}
 		return out;
@@ -67,8 +73,8 @@ jsutil.StringSet.prototype	= {
 	filter: function(pred, thisObject) {
 		var out	= new jsutil.StringSet();
 		for (var key in this.value) {
-			if (this.value.hasOwnProperty(key) && pred.call(thisObject, key)) {
-				out.putMutate(key);
+			if (this.contains(key) && pred.call(thisObject, key)) {
+				out.addMutate(key);
 			}
 		}
 		return out;
@@ -77,11 +83,33 @@ jsutil.StringSet.prototype	= {
 	filterNot: function(pred, thisObject) {
 		var out	= new jsutil.StringSet();
 		for (var key in this.value) {
-			if (this.value.hasOwnProperty(key) && !pred.call(thisObject, key)) {
-				out.putMutate(key);
+			if (this.contains(key) && !pred.call(thisObject, key)) {
+				out.addMutate(key);
 			}
 		}
 		return out;
+	},
+	
+	partition: function(pred, thisObject) {
+		var trues	= new jsutil.StringSet();
+		var falses	= new jsutil.StringSet();
+		for (var key in this.value) {
+			if (this.contains(key)) {
+				var target	= pred.call(thisObject, key) ? trues : falses;
+				target.addMutate(key);
+			}
+		}
+		return [ trues, falses ];
+	},
+	
+	equalsTo: function(that) {
+		for (var key in this.value) {
+			if (this.contains(key) && !that.contains(key))	return false;
+		}
+		for (var key in that.value) {
+			if (that.contains(key) && !this.contains(key))	return false;
+		}
+		return true;
 	},
 	
 	toArray: function() {
@@ -94,15 +122,15 @@ jsutil.StringSet.prototype	= {
 	clone: function() {
 		var out	= new jsutil.StringSet();
 		for (var key in this.value) {
-			if (this.value.hasOwnProperty(key)) {
-				out.putMutate(key);
+			if (this.contains(key)) {
+				out.addMutate(key);
 			}
 		}
 		return out;
 	},
 	
 	/** mutating operation */
-	putMutate: function(it) {
+	addMutate: function(it) {
 		this.value[it]	= 1;
 	},
 	
@@ -113,5 +141,5 @@ jsutil.StringSet.prototype	= {
 };
 
 jsutil.StringSet.empty				= new jsutil.StringSet();
-jsutil.StringSet.empty.putMutate	= function() { throw new Error("don't mutate StringSet.empty"); };
+jsutil.StringSet.empty.addMutate	= function() { throw new Error("don't mutate StringSet.empty"); };
 jsutil.StringSet.empty.removeMutate	= function() { throw new Error("don't mutate StringSet.empty"); };
