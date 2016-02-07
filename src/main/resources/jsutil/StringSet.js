@@ -1,5 +1,7 @@
 var jsutil	= jsutil || {};
 
+// TODO implement filter, find, map, flatMap, flatten aso. 
+
 jsutil.StringSet	= function() {
 	this.value	= {};
 }
@@ -87,6 +89,11 @@ jsutil.StringSet.prototype	= {
 		return jsutil.Object.keys(this.value);
 	}//,
 };
+
+jsutil.StringSet.empty	= new jsutil.StringSet();
+jsutil.StringSet.empty.putMutate	= function() { throw "don't mutate StringSet.empty" };
+jsutil.StringSet.empty.removeMutate	= function() { throw "don't mutate StringSet.empty" };
+
 jsutil.StringSet.fromArray	= function(array) {
 	var out	= new jsutil.StringSet();
 	for (var i=0; i<array.length; i++) {

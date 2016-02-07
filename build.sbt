@@ -2,7 +2,7 @@ name				:= "jsutil"
 
 organization		:= "de.djini"
 
-version				:= "0.11.0"
+version				:= "0.12.0"
 
 crossPaths			:= false
 

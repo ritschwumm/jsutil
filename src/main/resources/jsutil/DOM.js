@@ -78,33 +78,6 @@ jsutil.DOM = {
 	},
 	
 	//------------------------------------------------------------------------------
-	//## add
-
-	/** insert text, a node or an Array of these at the start of a target node */
-	pasteBegin: function(parent, additum) {
-		if (additum.constructor === Array)	this.insertBeginMany(parent, this.textAsNodeMany(additum));
-		else								this.insertBegin(parent, this.textAsNode(additum));
-	},
-
-	/** insert text, a node or an Array of these at the end of a target node */
-	pasteEnd: function(parent, additum) {
-		if (additum.constructor === Array)	this.insertEndMany(parent, this.textAsNodeMany(additum));
-		else								this.insertEnd(parent, this.textAsNode(additum));
-	},
-	
-	/** inserts text, a node or an Array of these before a target node */
-	pasteBefore: function(target, additum) {
-		if (additum.constructor === Array)	this.insertBeforeMany(target, this.textAsNodeMany(additum));
-		else								this.insertBefore(target, this.textAsNode(additum));
-	},
-
-	/** inserts text, a node or an Array of these after a target node */
-	pasteAfter: function(target, additum) {
-		if (additum.constructor === Array)	this.insertAfterMany(target, this.textAsNodeMany(additum));
-		else								this.insertAfter(target, this.textAsNode(additum));
-	},
-	
-	//------------------------------------------------------------------------------
 	//## single insertions
 	
 	// BETTER implement something like an insertion point?

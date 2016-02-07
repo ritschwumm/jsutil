@@ -49,7 +49,7 @@ jsutil.Object = {
 	},
 	
 	/** copies an Object's properties into an new Object */
-	copyOf: function(obj) {
+	clone: function(obj) {
 		var	out	= {};
 		for (var key in obj)
 				if (obj.hasOwnProperty(key))	
@@ -77,8 +77,9 @@ jsutil.Object = {
 	fromPairs: function(pairs) {
 		var	out	= {};
 		for (var i=0; i<pairs.length; i++) {
-			var	pair	= pairs[i];
+			var	pair		= pairs[i];
 			out[pair[0]]	= pair[1];
 		}
+		return out;
 	}//,
 };

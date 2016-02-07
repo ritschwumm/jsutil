@@ -8,6 +8,15 @@ Array.prototype.remove = function(element) {
 	return true;
 };
 
+/** returns a new Array without the given element */
+Array.prototype.removed = function(element) {
+	var	index	= this.indexOf(element);
+	if (index === -1)	return this;
+	var out	= [].concat(this);
+	out.splice(index, 1);
+	return out;
+};
+
 /** filter with an inverted predicate */
 Array.prototype.filterNot	= function(predicate, thisVal) {
 	var len	= this.length;
@@ -64,6 +73,11 @@ Array.prototype.flatMap = function(func, thisVal) {
 		out	= out.concat(func.call(thisVal, this[i], i, this));
 	}
 	return out;
+};
+
+/** returns a copy of this Array */
+Array.prototype.clone = function() {
+	return [].concat(this);
 };
 
 /** returns a reverse copy of this Array */
