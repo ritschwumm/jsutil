@@ -87,7 +87,7 @@ Array.prototype.mapBy = function(keyFunc) {
 
 /** new array with one item removed */
 Array.prototype.without	= function(item) {
-	var	index	= this.indexOf(element);
+	var	index	= this.indexOf(item);
 	if (index === -1)	return this;
 	
 	var out	= this.slice();
