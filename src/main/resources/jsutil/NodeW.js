@@ -131,6 +131,10 @@ jsutil.NodeW.prototype	= {
 	switchClass: function(condition, trueClassName, falseClassName) {
 		return jsutil.DOM.switchClass(this.peer, condition, trueClassName, falseClassName);
 	},
+	
+	enumClass: function(allClassNames, choosenClassName) {
+		return jsutil.DOM.enumClass(this.peer, allClassNames, choosenClassName);
+	},
 
 	//------------------------------------------------------------------------------
 	

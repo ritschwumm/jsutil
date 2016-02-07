@@ -11,30 +11,29 @@ jsutil.DOM = {
 	},
 	
 	/** attach an event listener, return a remove function. */
-	attach: function(element, eventName, listener, handler, useCapture) {
-		element.addEventListener(eventName, listener, useCapture);
+	attach: function(element, eventName, handler, useCapture) {
+		element.addEventListener(eventName, handler, useCapture);
 		return function() {
-			element.removeEventListener(eventName, listener, useCapture);
+			element.removeEventListener(eventName, handler, useCapture);
 		};
 	},
 	
-	/** attach an event listener that is attomatically removed after firing. return a remove function. */
+	/** attach an event listener that is automatically removed after firing. return a remove function. */
 	attachOnce: function(element, eventName, handler, useCapture) {
-		function removeFunc() {
-			element.removeEventListener(eventName, listener, useCapture);
-		}
 		function listener(ev) {
 			removeFunc();
 			handler(ev);
+		}
+		function removeFunc() {
+			element.removeEventListener(eventName, listener, useCapture);
 		}
 		element.addEventListener(eventName, listener, useCapture);
 		return removeFunc;
 	},
 	
-	/** make an event handler eating the event up */
+	/** make an event handler eating up the event */
 	selfishHandler: function(delegate) {
 		return function(ev) {
-			ev.stopPropagation();
 			ev.preventDefault();
 			delegate(ev);
 		};
