@@ -8,6 +8,17 @@ if (!Object.create)
 			F.prototype	= proto;
 			return new F();
 		};
+		
+if (!Object.prototype.keys)
+		Object.prototype.keys	= function() {
+			var	out	= [];
+			for (var key in obj) {
+				if (obj.hasOwnProperty(key)) {
+					out.push(key);
+				}
+			}
+			return out;
+		};
 
 //------------------------------------------------------------------------------
 //## Function

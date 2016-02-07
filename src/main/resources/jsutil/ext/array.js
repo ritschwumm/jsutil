@@ -65,11 +65,6 @@ Array.prototype.flatMap = function(func, thisVal) {
 	return out;
 };
 
-/** returns a copy of this Array */
-Array.prototype.clone = function() {
-	return [].concat(this);
-};
-
 /** return a new Array with a separator inserted between every element of the Array */
 Array.prototype.intersperse	= function(separator) {
 	var	out	= [];

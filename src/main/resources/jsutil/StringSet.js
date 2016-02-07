@@ -85,7 +85,7 @@ jsutil.StringSet.prototype	= {
 	},
 	
 	toArray: function() {
-		return jsutil.Object.keys(this.value);
+		return Object.keys(this.value);
 	},
 	
 	//------------------------------------------------------------------------------

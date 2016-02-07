@@ -9,24 +9,6 @@ jsutil.Object = {
 				Object.prototype.toString.call(obj).match(/(\w+)\]/)[1];
 	},
 	
-	/*
-	NOTE Object.keys(obj)
-	@see https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys
-	NOTE Object.getOwnPropertyNames(obj)
-	@see https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames
-	*/
-	
-	/** returns all keys as an Array */
-	keys: function(obj) {
-		var	out	= [];
-		for (var key in obj) {
-			if (obj.hasOwnProperty(key)) {
-				out.push(key);
-			}
-		}
-		return out;
-	},
-	
 	/** returns the value behind every key */
 	values: function(obj) {
 		var	out	= [];
