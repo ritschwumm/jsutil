@@ -142,62 +142,67 @@ jsutil.DOM = {
 	//------------------------------------------------------------------------------
 	//## css classes
 
-	classNameREPrefix: "(^|\\s+)",
-	classNameRESuffix: "(\\s+|$)",
-	
-	/** creates a RegExp matching a className */
-	classNameRE: function(className) {
-		return new RegExp(this.classNameREPrefix + className.escapeRE() + this.classNameRESuffix);
-	},
-	
 	/** returns an Array of the classes of an element */
 	getClasses: function(element) {
-		return element.className.split(/\s+/);
+		var raw	= (element.className || "").trim();
+		return raw ? raw.split(/\s+/) : [];
 	},
 	
 	/** sets all classes of an element from an Array of names */
 	setClasses: function(element, classNames) {
 		element.className	= classNames.join(" ");
 	},
+	
+	/** pass the class names array to a function modifying it */
+	modifyClasses: function(element, setFunc) {
+		this.setClasses(element, func(this.getClasses(element)));
+	},
 
 	/** returns whether an element has a class */
 	hasClass: function(element, className) {
-		if (!element.className)	return false;
-		var	re	= this.classNameRE(className);
-		return re.test(element.className);
+		return this.getClasses(element).contains(className);
 	},
 
 	/** adds a class to an element */
 	addClass: function(element, className) {
-		if (this.hasClass(element, className))	return;
-		var	old	= element.className ? element.className : "";
-		element.className = (old + " " + className).trim();
+		var set	= this.getClasses(element);
+		var ok	= !set.contains(className);
+		if (ok)	{
+			set.push(className);
+			this.setClasses(element, set);
+		}
+		return ok;
 	},
 
 	/** removes a class to an element */
 	removeClass: function(element, className) {
-		var	re	= this.classNameRE(className);
-		var	old	= element.className ? element.className : "";
-		element.className = old.replace(re, "");
+		var set	= this.getClasses(element);
+		var ok	= set.contains(className);
+		if (ok)	{
+			set.remove(className);
+			this.setClasses(element, set);
+		}
+		return ok;
 	},
 
 	/** replaces a class in an element with another */
 	replaceClass: function(element, oldClassName, newClassName) {
-		/*
-		this.removeClass(element, oldClassName);
-		this.addClass(element, newClassName);
-		*/
-		element.className	= element.className.replace(
-				this.classNameRE(oldClassName),
-				"$1" + newClassName + "$2");
+		var set	= this.getClasses(element);
+		if (set.contains(oldClassName))		set.remove(oldClassName);
+		if (!set.contains(newClassName))	set.push(newClassName);
+		this.setClasses(element, set);
 	},
 	
 	/** sets or unsets a class on an element */
 	updateClass: function(element, className, active) {
-		var	has	= this.hasClass(element, className);
-		if (has === active)	return;
 		if (active)	this.addClass(element, className);
 		else 		this.removeClass(element, className);
+	},
+	
+	/** switches between two different classes */
+	switchClass: function(element, condition, trueClassName, falseClassName) {
+		if (condition)	this.replaceClass(element, falseClassName, trueClassName);
+		else			this.replaceClass(element, trueClassName, falseClassName);
 	},
 
 	//------------------------------------------------------------------------------
