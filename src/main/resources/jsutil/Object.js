@@ -81,6 +81,14 @@ jsutil.Object = {
 		return out;
 	},
 	
+	/** call a function with key and value for each item */
+	forEach: function(obj, func) {
+		for (var k in obj) {
+			if (!obj.hasOwnProperty(k))	continue;
+			func(k, obj[k]);
+		}
+	},
+	
 	mapValues: function(obj, func) {
 		var	out	= {};
 		for (var key in obj) {

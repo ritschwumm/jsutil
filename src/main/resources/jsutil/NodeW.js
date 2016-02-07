@@ -132,8 +132,8 @@ jsutil.NodeW.prototype	= {
 		return jsutil.DOM.updateClass(this.peer, className, active);
 	},
 	
-	switchClass: function(condition, trueClassName, falseClassName) {
-		return jsutil.DOM.switchClass(this.peer, condition, trueClassName, falseClassName);
+	switchClass: function(trueClassName, falseClassName, condition) {
+		return jsutil.DOM.switchClass(this.peer, trueClassName, falseClassName, condition);
 	},
 	
 	enumClass: function(allClassNames, choosenClassName) {

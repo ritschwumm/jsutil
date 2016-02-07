@@ -291,7 +291,7 @@ jsutil.DOM = {
 	},
 	
 	/** switches between two different classes */
-	switchClass: function(element, condition, trueClassName, falseClassName) {
+	switchClass: function(element, trueClassName, falseClassName, condition) {
 		if (condition)	this.replaceClass(element, falseClassName,	trueClassName);
 		else			this.replaceClass(element, trueClassName,	falseClassName);
 	},
