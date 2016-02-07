@@ -267,6 +267,16 @@ jsutil.DOM = {
 
 	//------------------------------------------------------------------------------
 	//## position
+	
+	/** analog to element.scrollTop, but from the bottom */
+	getScrollBottom: function(element) {
+		return element.scrollHeight - element.offsetHeight - element.scrollTop;
+	},
+
+	/** analog to element.scrollTop, but from the bottom */
+	setScrollBottom: function(element, scrollBottom) {
+		element.scrollTop	= element.scrollHeight - element.offsetHeight - scrollBottom;
+	},
 
 	/** mouse position in document base coordinates */
 	mousePos: function(event) {

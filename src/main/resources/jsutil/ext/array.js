@@ -9,7 +9,7 @@ Array.prototype.remove = function(element) {
 };
 
 /** returns a new Array without the given element */
-Array.prototype.removed = function(element) {
+Array.prototype.cloneRemove = function(element) {
 	var	index	= this.indexOf(element);
 	if (index === -1)	return this;
 	var out	= [].concat(this);
@@ -81,7 +81,7 @@ Array.prototype.clone = function() {
 };
 
 /** returns a reverse copy of this Array */
-Array.prototype.reverseClone = function() {
+Array.prototype.cloneReverse = function() {
 	var	out	= [].concat(this);
 	out.reverse();
 	return out;
