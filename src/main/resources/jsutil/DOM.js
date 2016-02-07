@@ -10,13 +10,25 @@ jsutil.DOM = {
 		window.addEventListener("DOMContentLoaded", func, false);
 	},
 	
-	/** attach an event listener, remove it when it fired */
-	attachOnce: function(element, event, handler) {
+	/** attach an event listener, return a remove function. */
+	attach: function(element, eventName, listener, handler, useCapture) {
+		element.addEventListener(eventName, listener, useCapture);
+		return function() {
+			element.removeEventListener(eventName, listener, useCapture);
+		};
+	},
+	
+	/** attach an event listener that is attomatically removed after firing. return a remove function. */
+	attachOnce: function(element, eventName, handler, useCapture) {
+		function removeFunc() {
+			element.removeEventListener(eventName, listener, useCapture);
+		}
 		function listener(ev) {
-			element.removeEventListener(event, listener, false);
+			removeFunc();
 			handler(ev);
 		}
-		element.addEventListener(event, listener, false);
+		element.addEventListener(eventName, listener, useCapture);
+		return removeFunc;
 	},
 
 	//------------------------------------------------------------------------------
