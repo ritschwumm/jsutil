@@ -45,6 +45,7 @@ Array.prototype.zip	= function(that) {
 	return out;
 };
 
+// TODO this is defined in ES6
 /** whether this array contains an element */
 Array.prototype.contains = function(element) {
 	return this.indexOf(element) !== -1;

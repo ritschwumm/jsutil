@@ -3,7 +3,8 @@
 
 /** copies an object's properties into another object */
 if (!Object.assign)
-		Object.assign	= function(source, target) {
+		// TODO original allows multiple sources
+		Object.assign	= function(target, source) {
 			for (var key in source) {
 				if (source.hasOwnProperty(key)) {
 					target[key] = source[key];
