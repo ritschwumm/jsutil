@@ -80,37 +80,107 @@ jsutil.DOM = {
 	//------------------------------------------------------------------------------
 	//## add
 
-	/** inserts text, a node or an Array of these before a target node */
-	pasteBefore: function(target, additum) {
-		if (additum.constructor !== Array)	additum	= [ additum ];
-		var	parent	= target.parentNode;
-		for (var i=0; i<additum.length; i++) {
-			var	node	= additum[i];
-			if (node.constructor === String)	node	= document.createTextNode(node);
-			parent.insertBefore(node, target);
-		}
-	},
-
-	/** inserts text, a node or an Array of these after a target node */
-	pasteAfter: function(target, additum) {
-		if (target.nextSibling) this.pasteBefore(target.nextSibling, additum);
-		else					this.pasteEnd(target.parentNode, additum);
-	},
-
 	/** insert text, a node or an Array of these at the start of a target node */
 	pasteBegin: function(parent, additum) {
-		if (parent.firstChild)	this.pasteBefore(parent.firstChild, additum);
-		else					this.pasteEnd(parent, additum);
+		if (additum.constructor === Array)	this.insertBeginMany(parent, this.textAsNodeMany(additum));
+		else								this.insertBegin(parent, this.textAsNode(additum));
 	},
 
 	/** insert text, a node or an Array of these at the end of a target node */
 	pasteEnd: function(parent, additum) {
-		if (additum.constructor !== Array)	additum	= [ additum ];
-		for (var i=0; i<additum.length; i++) {
-			var	node	= additum[i];
-			if (node.constructor === String)	node	= document.createTextNode(node);
-			parent.appendChild(node);
+		if (additum.constructor === Array)	this.insertEndMany(parent, this.textAsNodeMany(additum));
+		else								this.insertEnd(parent, this.textAsNode(additum));
+	},
+	
+	/** inserts text, a node or an Array of these before a target node */
+	pasteBefore: function(target, additum) {
+		if (additum.constructor === Array)	this.insertBeforeMany(target, this.textAsNodeMany(additum));
+		else								this.insertBefore(target, this.textAsNode(additum));
+	},
+
+	/** inserts text, a node or an Array of these after a target node */
+	pasteAfter: function(target, additum) {
+		if (additum.constructor === Array)	this.insertAfterMany(target, this.textAsNodeMany(additum));
+		else								this.insertAfter(target, this.textAsNode(additum));
+	},
+	
+	//------------------------------------------------------------------------------
+	//## single insertions
+	
+	// BETTER implement something like an insertion point?
+	
+	/** insert a node as the first child of the parent */
+	insertBegin: function(parent, node) {
+		parent.insertBefore(node, parent.firstChild);
+	},
+	
+	/** insert a node as the last child of the parent */
+	insertEnd: function(parent, node) {
+		parent.appendChild(node);
+	},
+	
+	/** insert a node before target */
+	insertBefore: function(target, node) {
+		target.parentNode.insertBefore(node, target);
+	},
+	
+	/** insert a node after target */
+	insertAfter: function(target, node) {
+		target.parentNode.insertBefore(node, target.nextSibling);
+	},
+	
+	//------------------------------------------------------------------------------
+	//## multi insertions
+	
+	/** insert many nodes at the front of the children of the parent */
+	insertBeginMany: function(parent, nodes) {
+		var reference	= parent.firstChild;
+		for (var i=0; i<nodes.length; i++) {
+			parent.insertBefore(nodes[i], reference);
 		}
+	},
+	
+	/** insert many nodes at the end of the children of the parent */
+	insertEndMany: function(parent, nodes) {
+		for (var i=0; i<nodes.length; i++) {
+			parent.appendChild(nodes[i]);
+		}
+	},
+	
+	/** insert many nodes before the target */
+	insertBeforeMany: function(target, nodes) {
+		var parent	= target.parentNode;
+		for (var i=0; i<nodes.length; i++) {
+			parent.insertBefore(nodes[i], target);
+		}
+	},
+	
+	/** insert many nodes after the target */
+	insertAfterMany: function(target, nodes) {
+		var parent		= target.parentNode;
+		var reference	= target.nextSibling;
+		for (var i=0; i<nodes.length; i++) {
+			parent.insertBefore(nodes[i], reference);
+		}
+	},
+	
+	//------------------------------------------------------------------------------
+	//## insertion helpers
+	
+	/** turn String into text node, pass through everything else */
+	textAsNode: function(it) {
+		return it.constructor === String
+				? document.createTextNode(it)
+				: it;
+	},
+	
+	/** textAsNode lifted to an Array */
+	textAsNodeMany: function(its) {
+		var out	= [];
+		for (var i=0; i<its.length; i++) {
+			out.push(this.textAsNode(its[i]));
+		}
+		return out;
 	},
 	
 	//------------------------------------------------------------------------------
@@ -130,23 +200,31 @@ jsutil.DOM = {
 	//------------------------------------------------------------------------------
 	//## replace
 	
-	/** replace a node with another one */
-	replaceNode: function(node, replacement) {
-		node.parentNode.replaceChild(replacement, node); 
+	/** replace a target with a replacement node */
+	replaceNode: function(target, replacement) {
+		target.parentNode.replaceChild(replacement, target); 
+ 	},
+	
+	/** replace a target with many replacement nodes */
+	replaceNodeMany: function(target, replacements) {
+		var parent	= target.parentNode;
+		for (var i=0; i<replacements.length; i++) {
+			parent.insertBefore(replacements[i], target);
+		}
+		parent.removeChild(target);
 	},
 	
-	/** replace all children of a node */
-	replaceChildren: function(node, newChildren) {
-		node.innerHTML	= "";
-		for (var i=0; i<newChildren.length; i++) {
-			var newChild	= newChildren[i];
-			node.appendChild(newChild);
-		}
+	/** replace all children of a target node */
+	replaceChildren: function(target, replacements) {
+		this.removeChildren(target);
+		this.insertEndMany(target, replacements);
 	},
 
 	//------------------------------------------------------------------------------
 	//## css classes
 
+	// BETTER use StringSet here
+	
 	/** returns an Array of the classes of an element */
 	getClasses: function(element) {
 		var raw	= (element.className || "").trim();

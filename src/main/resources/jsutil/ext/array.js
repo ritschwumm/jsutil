@@ -1,5 +1,13 @@
 // NOTE: these _do_ break for each (foo in someArray)
 
+/** mutating operation: removes an element */
+Array.prototype.remove = function(element) {
+	var	index	= this.indexOf(element);
+	if (index === -1)	return false;
+	this.splice(index, 1);
+	return true;
+};
+
 /** filter with an inverted predicate */
 Array.prototype.filterNot	= function(predicate, thisVal) {
 	var len	= this.length;
@@ -22,14 +30,6 @@ Array.prototype.zip	= function(that) {
 		out.push([ this[i], that[i] ]);
 	}
 	return out;
-};
-
-/** removes an element */
-Array.prototype.remove = function(element) {
-	var	index	= this.indexOf(element);
-	if (index === -1)	return false;
-	this.splice(index, 1);
-	return true;
 };
 
 /** whether this array contains an element */
