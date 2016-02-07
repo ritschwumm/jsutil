@@ -1,5 +1,29 @@
 // NOTE: these _do_ break for each (foo in someArray)
 
+/** filter with an inverted predicate */
+Array.prototype.filterNot	= function(predicate, thisVal) {
+	var len	= this.length;
+	var out	= new Array();
+	for (var i=0; i<len; i++) {
+		var it	= this[i];
+		if (!predicate.call(thisVal, it, i, this)) {
+			out.push(it);
+		}
+	}
+	return out;
+};
+
+/** zip with another array */
+Array.prototype.zip	= function(that) {
+	var thisLen	= this.length;
+	var thatLen	= that.length;
+	var out	= new Array();
+	for (var i=0; i<thisLen && i<thatLen; i++) {
+		out.push([ this[i], that[i] ]);
+	}
+	return out;
+};
+
 /** removes an element */
 Array.prototype.remove = function(element) {
 	var	index	= this.indexOf(element);
