@@ -2,7 +2,7 @@ var jsutil	= jsutil || {};
 
 /** Array helper functions */
 jsutil.Array = {
-	single: function(value) {
+	single: function(item) {
 		return [ item ];
 	},
 	

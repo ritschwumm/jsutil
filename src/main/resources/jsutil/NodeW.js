@@ -9,7 +9,7 @@ jsutil.NodeW.of = function(peer) {
 };
 jsutil.NodeW.prototype	= {
 	fetch: function(tagName, className, index) {
-		return jsutil.DOM.fetch(this.peer, tagName. className, index);
+		return jsutil.DOM.fetch(this.peer, tagName, className, index);
 	},
 	
 	//------------------------------------------------------------------------------
