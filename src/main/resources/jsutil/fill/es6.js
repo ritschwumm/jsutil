@@ -50,7 +50,7 @@ if (!Array.prototype.findIndex)
 				var it	= this[i];
 				if (predicate.call(thisVal, it, i, this))	return i;
 			}
-			return undefined;
+			return -1;
 		};
 		
 //------------------------------------------------------------------------------
