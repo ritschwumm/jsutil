@@ -63,6 +63,15 @@ jsutil.Object = {
 		}
 	},
 	
+	/** returns all keys as an Array */
+	keys: function(obj) {
+		var	out	= [];
+		for (var key in obj)
+				if (obj.hasOwnProperty(key))
+						out.push(key);
+		return out;
+	},
+	
 	/** returns the value behind every key */
 	values: function(obj) {
 		var	out	= [];

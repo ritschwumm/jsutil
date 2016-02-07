@@ -1,3 +1,5 @@
+// @depends jsutil/Object
+
 var jsutil	= jsutil || {};
 
 /**
