@@ -32,12 +32,12 @@ jsutil.StringSet.prototype	= {
 	union: function(that) {
 		var out	= new jsutil.StringSet();
 		for (var key in this.value) {
-			if (this.hasOwnProperty(key)) {
+			if (this.value.hasOwnProperty(key)) {
 				out.putMutate(key);
 			}
 		}
 		for (var key in that.value) {
-			if (that.hasOwnProperty(key)) {
+			if (that.value.hasOwnProperty(key)) {
 				out.putMutate(key);
 			}
 		}
@@ -47,7 +47,7 @@ jsutil.StringSet.prototype	= {
 	intersection: function(that) {
 		var out	= new jsutil.StringSet();
 		for (var key in this.value) {
-			if (this.hasOwnProperty(key) && that.hasOwnProperty(key)) {
+			if (this.value.hasOwnProperty(key) && that.value.hasOwnProperty(key)) {
 				out.putMutate(key);
 			}
 		}
@@ -57,7 +57,7 @@ jsutil.StringSet.prototype	= {
 	difference: function(that) {
 		var out	= new jsutil.StringSet();
 		for (var key in this.value) {
-			if (this.hasOwnProperty(key) && !that.hasOwnProperty(key)) {
+			if (this.value.hasOwnProperty(key) && !that.value.hasOwnProperty(key)) {
 				out.putMutate(key);
 			}
 		}
@@ -67,7 +67,7 @@ jsutil.StringSet.prototype	= {
 	filter: function(pred, thisObject) {
 		var out	= new jsutil.StringSet();
 		for (var key in this.value) {
-			if (this.hasOwnProperty(key) && pred.call(thisObject, key)) {
+			if (this.value.hasOwnProperty(key) && pred.call(thisObject, key)) {
 				out.putMutate(key);
 			}
 		}
@@ -77,7 +77,7 @@ jsutil.StringSet.prototype	= {
 	filterNot: function(pred, thisObject) {
 		var out	= new jsutil.StringSet();
 		for (var key in this.value) {
-			if (this.hasOwnProperty(key) && !pred.call(thisObject, key)) {
+			if (this.value.hasOwnProperty(key) && !pred.call(thisObject, key)) {
 				out.putMutate(key);
 			}
 		}
