@@ -344,14 +344,14 @@ jsutil.DOM = {
 	
 	/** analog to element.scrollTop, but from the bottom */
 	getScrollBottom: function(element) {
-		return element.scrollHeight - element.offsetHeight - element.scrollTop;
+		return element.scrollHeight - element.clientHeight - element.scrollTop;
 	},
 
 	/** analog to element.scrollTop, but from the bottom */
 	setScrollBottom: function(element, scrollBottom) {
-		element.scrollTop	= element.scrollHeight - element.offsetHeight - scrollBottom;
+		element.scrollTop	= element.scrollHeight - element.clientHeight - scrollBottom;
 	},
-
+	
 	/** mouse position in document base coordinates */
 	mousePos: function(event) {
 		return {
