@@ -12,5 +12,13 @@ jsutil.String = {
 	/** escapes characters to make them usable as a literal in a RegExp */
 	escapeRE: function(self) {
 		return self.replace(/([{}()|.?*+^$\[\]\\])/g, "\\$1");
+	},
+	
+	trimLeft: function(s) {
+		return s.replace(/^\s+/gm, "");
+	},
+	
+	trimRight: function(s) {
+		return this.replace(/\s+$/gm, "");
 	}//,
 };

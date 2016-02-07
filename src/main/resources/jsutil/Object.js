@@ -8,6 +8,17 @@ jsutil.Object = {
 		return out;
 	},
 	
+	/** copies an Object's properties into an new Object */
+	clone: function(obj) {
+		var	out	= {};
+		for (var key in obj) {
+			if (obj.hasOwnProperty(key)) {
+				out[key] = obj[key];
+			}
+		}
+		return out;
+	},
+	
 	/** copy own properties from multiple objects into one. properties defined later win */
 	merge: function(/* object... */) {
 		var	out	= {};
@@ -40,17 +51,6 @@ jsutil.Object = {
 		for (var key in obj) {
 			if (obj.hasOwnProperty(key)) {
 				out.push(obj[key]);
-			}
-		}
-		return out;
-	},
-	
-	/** copies an Object's properties into an new Object */
-	clone: function(obj) {
-		var	out	= {};
-		for (var key in obj) {
-			if (obj.hasOwnProperty(key)) {
-				out[key] = obj[key];
 			}
 		}
 		return out;
