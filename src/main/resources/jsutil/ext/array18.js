@@ -1,4 +1,4 @@
-//##  http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Objects:Array:reduce
+// @see http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Objects:Array:reduce
 if (!Array.prototype.reduce)
 {
   Array.prototype.reduce = function(fun /*, initial*/)
@@ -43,7 +43,7 @@ if (!Array.prototype.reduce)
   };
 }
 
-//## http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Objects:Array:reduceRight
+// @see http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Objects:Array:reduceRight
 if (!Array.prototype.reduceRight)
 {
   Array.prototype.reduceRight = function(fun /*, initial*/)

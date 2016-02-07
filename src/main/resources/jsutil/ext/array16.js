@@ -1,4 +1,3 @@
-//------------------------------------------------------------------------------
 // @see http://developer.mozilla.org/en/docs/Talk:Core_JavaScript_1.5_Reference:Global_Objects:Array
 
 if (!Array.prototype.indexOf)

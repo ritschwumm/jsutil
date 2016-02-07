@@ -4,28 +4,6 @@ Function.identity = function(x) { return x; }
 /** create a constant Function */
 Function.constant = function(c) { return function(v) { return c; } }
 
-/** create a Function calling this Function with a fixed this */
-Function.prototype.bind = function(thisObject) {
-	var self	= this;	// == arguments.callee
-	return function() {
-		return self.apply(thisObject, arguments);
-	};
-};
-/*
-NOTE fun.bind(thisValue [, arg1 [, arg2 [...] ] ])
-@see https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
-*/
-
-/** create a Function calling this Function with fixed first arguments */
-Function.prototype.fix = function() {
-	var	self	= this;	// == arguments.callee
-	var args	= Array.prototype.slice.apply(arguments);
-	return function() {
-		return self.apply(this, args.concat(Array.prototype.slice.apply(arguments)));
-	};
-};
-
-
 /** 
  * call this thunk after some millis.
  * optionally call the given continuation with the result afterwards.
