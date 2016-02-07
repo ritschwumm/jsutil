@@ -1,4 +1,5 @@
-// NOTE: these _do_ break for each (foo in someArray)
+//------------------------------------------------------------------------------
+//## mutating
 
 /** mutating operation: removes an element */
 Array.prototype.remove = function(element) {
@@ -7,6 +8,9 @@ Array.prototype.remove = function(element) {
 	this.splice(index, 1);
 	return true;
 };
+
+//------------------------------------------------------------------------------
+//## not mutating
 
 /** returns a new Array without the given element */
 Array.prototype.cloneRemove = function(element) {

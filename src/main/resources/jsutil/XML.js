@@ -13,7 +13,7 @@ jsutil.XML = {
 		// root.namespaceURI === "http://www.mozilla.org/newlayout/xml/parsererror.xml"
 		if (root.tagName === "parserError"	// ff 2
 		|| root.tagName === "parsererror")	// ff 3
-				throw "XML parser error: " + root.textContent;
+				throw new Error("XML parser error: " + root.textContent);
 		return doc;
 	},
 	/*

@@ -5,8 +5,8 @@ jsutil.StringSet	= function() {
 };
 
 jsutil.StringSet.empty				= new jsutil.StringSet();
-jsutil.StringSet.empty.putMutate	= function() { throw "don't mutate StringSet.empty" };
-jsutil.StringSet.empty.removeMutate	= function() { throw "don't mutate StringSet.empty" };
+jsutil.StringSet.empty.putMutate	= function() { throw new Error("don't mutate StringSet.empty"); };
+jsutil.StringSet.empty.removeMutate	= function() { throw new Error("don't mutate StringSet.empty"); };
 
 jsutil.StringSet.fromArray	= function(array) {
 	var out	= new jsutil.StringSet();

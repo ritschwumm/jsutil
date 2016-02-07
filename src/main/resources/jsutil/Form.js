@@ -106,7 +106,7 @@ jsutil.Form = {
 			return [];
 		}
 		else {
-			throw "field: " + name + " has the unknown type: " + type;
+			throw new Error("field: " + name + " has the unknown type: " + type);
 		}
 	}//,
 };

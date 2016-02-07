@@ -13,7 +13,7 @@ var jsutil	= jsutil || {};
  */
 jsutil.Loc	= function(urlStr) {
 	var	m	= this.parser.exec(urlStr);
-	if (!m)	throw "cannot parse URL: " + urlStr;
+	if (!m)	throw new Error("cannot parse URL: " + urlStr);
 	this.local		= !m[1];
 	this.protocol	= m[2] ? m[2] : null;							// http:
 	this.host		= m[3] ? m[3] : null;							// de.wikipedia.org
@@ -60,18 +60,15 @@ jsutil.Loc.prototype = {
 	
 	/** converts the searchString into a hash. */
 	argsMap: function() {
-		return jsutil.Object.fromPairs(this.args());
-		/*
+		var pairs	= this.args();
 		var	out		= {};
-		var	pairs	= this.args();
 		for (var i=0; i<pairs.length; i++) {
 			var	pair	= pairs[i];
-			var	key		= pair[0];
-			var	value	= pair[1];
-			// if (key in out)	throw "duplicate argument: " + key);
+			var key		= pair[0];
+			var value	= pair[1];
+			// if (out.hasOwnProperty(key))	throw new Error("duplicate argument: " + key);
 			out[key]	= value;
 		}
 		return out;
-		*/
 	}//,
 };

@@ -9,13 +9,6 @@ jsutil.Object = {
 	@see https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/create
 	*/
 	
-	/** create an Object from a prototype */
-	object: function(obj) {
-		function F() {}
-		F.prototype = obj;
-		return new F();
-	},
-	
 	/** return a type-indicating string */
 	type: function(obj) {
 		return	obj === null	? "null"		:
@@ -55,13 +48,6 @@ jsutil.Object = {
 				if (obj.hasOwnProperty(key))	
 						out[key] = obj[key];
 		return out;
-	},
-	
-	/** copies an object's properties into another object */
-	copySlots: function(source, target) {
-		for (var key in source)
-				if (source.hasOwnProperty(key))	
-						target[key] = source[key];
 	},
 	
 	/** returns an object's slots as an Array of Pairs */

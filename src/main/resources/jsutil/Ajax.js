@@ -26,7 +26,7 @@ jsutil.Ajax = {
 	 *		errorFunc			called for 500..600
 	 */
 	call: function(args) {
-		if (!args.url)	throw "url argument missing";
+		if (!args.url)	throw new Error("url argument missing");
 		
 		// create client
 		var	client	= new XMLHttpRequest();
@@ -152,8 +152,8 @@ jsutil.Ajax = {
 		var	out	= "";
 		for (var i=0; i<args.length; i++) {                       
 			var	pair	= args[i];
-			if (pair.constructor !== Array)	throw "expected a Pair: " + pair;
-			if (pair.length !== 2)			throw "expected a Pair: " + pair;
+			if (pair.constructor !== Array)	throw new Error("expected a Pair: " + pair);
+			if (pair.length !== 2)			throw new Error("expected a Pair: " + pair);
 			if (pair[1] === null)	continue;
 			out	+= "&"	+ encodeFunc(pair[0])
 				+  "="	+ encodeFunc(pair[1]);
