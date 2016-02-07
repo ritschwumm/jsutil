@@ -31,10 +31,9 @@ if (!Array.of)
 			return Array.prototype.slice.call(arguments);
 		};
 		
-/** whether this array contains an element */
-if (!Array.prototype.contains)
-		Array.prototype.contains = function(element) {
-			return this.indexOf(element) !== -1;
+if (!Array.prototype.includes)
+		Array.prototype.includes = function(element, fromIndex) {
+			return this.indexOf(element, fromIndex) !== -1;
 		};
 
 if (!Array.prototype.find)
@@ -76,8 +75,8 @@ if (!String.prototype.endsWith)
 		};
 		
 /** whether this string contains another */
-if (!String.prototype.contains)
-		String.prototype.contains	= function(s, start) {
+if (!String.prototype.includes)
+		String.prototype.includes	= function(s, start) {
 			return this.indexOf(s, start) !== -1;
 		};
 
