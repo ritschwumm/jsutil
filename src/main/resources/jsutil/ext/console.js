@@ -19,7 +19,6 @@ jsutil.Console	= {
 	count:			function() {}
 };
 
-// all
 if (window.console) {
 	// opera
 	if (window.console.log && !window.console.debug) {
@@ -28,17 +27,11 @@ if (window.console) {
 
 	// inject missing functions
 	for (key in jsutil.Console) {
-		if (!jsutil.Console.hasOwnProperty(key))	continue;
-		if (window.console[key])					continue;
-		window.console[key]	= jsutil.Console[key];
+		if (!window.console[key] && jsutil.Console.hasOwnProperty(key)) {
+			window.console[key]	= jsutil.Console[key];
+		}
 	}
 } 
 else {
 	window.console	= jsutil.Console;
 }
-
-// TODO get rid of this
-// necessary on chrome
-window.debug	= function() {
-	window.console.debug.apply(window.console, arguments);
-};

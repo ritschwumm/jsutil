@@ -13,6 +13,11 @@ jsutil.DOM = {
 	//------------------------------------------------------------------------------
 	//## find
 	
+	/** checks if obj is a DOM node */
+	isNode: function(obj) {
+		return !!(obj && obj.nodeType);
+	},
+	
 	/** find an element in document by its id */
 	get: function(id) {
 		return document.getElementById(id);
