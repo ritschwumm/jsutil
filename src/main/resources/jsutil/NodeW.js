@@ -135,6 +135,14 @@ jsutil.NodeW.prototype	= {
 	enumClass: function(allClassNames, choosenClassName) {
 		return jsutil.DOM.enumClass(this.peer, allClassNames, choosenClassName);
 	},
+	
+	prefixClass: function(prefix, choosenSuffix) {
+		return jsutil.DOM.prefixClass(this.peer, prefix, choosenSuffix);
+	},
+	
+	replaceClassGroup: function(relevantPred, choosenClassName) {
+		return jsutil.DOM.replaceClassGroup(this.peer, relevantPred, choosenClassName);
+	},
 
 	//------------------------------------------------------------------------------
 	

@@ -326,12 +326,12 @@ jsutil.DOM = {
 	},
 	
 	/** replace all classes matching a predicate with a new one or none (if null) */
-	replaceClassGroup: function(element, relevantFunc, choosenClassName) {
+	replaceClassGroup: function(element, relevantPred, choosenClassName) {
 		var oldSet	= this.getClasses(element);
 		var newSet	= [];
 		for (var i=0; i<oldSet.length; i++) {
 			var old	= oldSet[i];
-			if (!relevantFunc(old))	newSet.push(old);
+			if (!relevantPred(old))	newSet.push(old);
 		}
 		if (choosenClassName !== null) {
 			newSet.push(choosenClassName);
