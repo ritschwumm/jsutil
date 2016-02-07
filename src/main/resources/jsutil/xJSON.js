@@ -1,7 +1,7 @@
 // if available, use native JSON
 var xJSON = window.JSON 
 ? {
-	parse:	JSON.parse,
+	parse:		JSON.parse,
 	unparse:	JSON.stringify
 } 
 : {
