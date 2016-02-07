@@ -1,5 +1,7 @@
+var jsutil	= jsutil || {};
+
 /** text utilities */
-var TextUtil = {
+jsutil.Text = {
 	/** 
 	 * gets an Array of search/replace-pairs (two Strings) and returns 
 	 * a function taking a String and replacing every search-String with
@@ -31,20 +33,6 @@ var TextUtil = {
 	},
 	
 	/** make a function returning its argument */
-	idFunc: function() {
-		return function(s) {
-			return s;
-		};
-	},
-	
-	/** make a function returning a constant value */
-	constFunc: function(s) {
-		return function() {
-			return s;
-		};
-	},
-	
-	/** make a function returning its argument */
 	replaceFunc: function(search, replace) {
 		return function(s) {
 			return s.replace(search, replace);
@@ -54,14 +42,14 @@ var TextUtil = {
 	/** make a function adding a given prefix */
 	prefixFunc: function(separator, prefix) {
 		return function(suffix) { 
-			return TextUtil.joinPrintable(separator, [ prefix, suffix ]); 
+			return jsutil.Text.joinPrintable(separator, [ prefix, suffix ]); 
 		};
 	},
 	
 	/** make a function adding a given suffix */
 	suffixFunc: function(separator, suffix) {
 		return function(prefix) { 
-			return TextUtil.joinPrintable(separator, [ prefix, suffix ]);
+			return jsutil.Text.joinPrintable(separator, [ prefix, suffix ]);
 		};
 	}//,
 };

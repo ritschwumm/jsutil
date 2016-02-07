@@ -1,6 +1,8 @@
-var Predicate = {
-	always:	Function.constant(true),
-	never:	Function.constant(false),
+var jsutil	= jsutil || {};
+
+jsutil.Predicate = {
+	always:	function(a) { return true;	},
+	never:	function(a) { return false;	},
 	
 	not: function(a) {
 		return function(v) {

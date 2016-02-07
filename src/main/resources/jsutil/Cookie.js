@@ -1,5 +1,7 @@
+var jsutil	= jsutil || {};
+
 /** helper functions for cookies */
-var Cookie = {
+jsutil.Cookie = {
 	TTL_DEFAULT:	1*31*24*60*60*1000,	// in a month
 	TTL_DELETE:		  -3*24*60*60*1000,	// 3 days before
 	

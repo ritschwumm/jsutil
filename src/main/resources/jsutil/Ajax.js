@@ -1,5 +1,7 @@
+var jsutil	= jsutil || {};
+
 /** ajax helper */
-var Ajax = {
+jsutil.Ajax = {
 	/** 
 	 * create and use an XMLHttpRequest with named parameters 
 	 *

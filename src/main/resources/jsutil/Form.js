@@ -1,5 +1,7 @@
+var jsutil	= jsutil || {};
+
 /** HTMLFormElement helper functions */
-var Form = {
+jsutil.Form = {
 	//------------------------------------------------------------------------------
 	///## finder
 	
@@ -31,7 +33,7 @@ var Form = {
 	/**
 	 * parses HTMLFormElement and its HTML*Element children 
 	 * into an Array of name/value-pairs (2-element Arrays).
-	 * these pairs can be used as bodyArgs parameter for Ajax.call.
+	 * these pairs can be used as bodyArgs parameter for jsutil.Ajax.call.
 	 *
 	 * returns an Array of Pairs, optionally with one of
 	 * the button/image/submit-elements activated

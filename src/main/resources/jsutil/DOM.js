@@ -1,5 +1,7 @@
+var jsutil	= jsutil || {};
+
 /** DOM helper functions */
-var DOM = {
+jsutil.DOM = {
 	//------------------------------------------------------------------------------
 	//## events
 

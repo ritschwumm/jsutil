@@ -1,9 +1,3 @@
-/** the unary identiy function */
-Function.identity = function(x) { return x; }
-
-/** create a constant Function */
-Function.constant = function(c) { return function(v) { return c; } }
-
 /** 
  * call this thunk after some millis.
  * optionally call the given continuation with the result afterwards.

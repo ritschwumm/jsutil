@@ -1,5 +1,7 @@
+var jsutil	= jsutil || {};
+
 /** XML utility functions */
-var XMLUtil = {
+jsutil.XML = {
 	//------------------------------------------------------------------------------
 	//## DOM
 	

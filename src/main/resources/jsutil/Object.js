@@ -1,7 +1,9 @@
+var jsutil	= jsutil || {};
+
 // NOTE: these do _not_ break for (foo in bar)
 
 /** Object helper functions */
-var Objects = {
+jsutil.Object = {
 	/** create an Object from a prototype */
 	object: function(obj) {
 		function F() {}

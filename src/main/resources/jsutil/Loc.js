@@ -1,3 +1,5 @@
+var jsutil	= jsutil || {};
+
 /**
  * tries to behave similar to a Location object
  * protocol	includes everything before the //
@@ -7,7 +9,7 @@
  * hash		includes the leading # or is null
  * search	includes the leading ? or is null
  */
-function Loc(urlStr) {
+jsutil.Loc	= function(urlStr) {
 	var	m	= this.parser.exec(urlStr);
 	if (!m)	throw "cannot parse URL: " + urlStr;
 	this.local		= !m[1];
@@ -18,7 +20,7 @@ function Loc(urlStr) {
 	this.hash		= m[6] ? m[6] : "";								// #Industry
 	this.search		= m[7] ? m[7] : "";								// ?action=edit
 }
-Loc.prototype = {
+jsutil.Loc.prototype = {
 	/** matches a global or local URL */
 	parser: /((.+?)\/\/([^:\/]+)(:[0-9]+)?)?([^#?]+)?(#[^?]*)?(\?.*)?/,
 
@@ -56,7 +58,7 @@ Loc.prototype = {
 	
 	/** converts the searchString into a hash. */
 	argsMap: function() {
-		return Objects.fromPairs(this.args());
+		return jsutil.Object.fromPairs(this.args());
 		/*
 		var	out		= {};
 		var	pairs	= this.args();

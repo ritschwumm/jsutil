@@ -1,15 +1,5 @@
 // NOTE: these _do_ break for each (foo in someArray)
 
-/*
-// NOTE: the Array monad has Array.make as unit, flatMap as bind
-// NOTE: flatten = flatMap id
-*/
-
-/** can be used to copy a function's arguments into a real Array */
-Array.make = function(args) {
-	return Array.prototype.slice.apply(args);
-};
-
 /** removes an element */
 Array.prototype.remove = function(element) {
 	var	index	= this.indexOf(element);
@@ -60,7 +50,7 @@ Array.prototype.reverseClone = function() {
 };
 
 /** return a new Array with a separator inserted between every element of the Array */
-Array.prototype.infuse = function(separator) {
+Array.prototype.intersperse	= function(separator) {
 	var	out	= [];
 	for (var i=0; i<this.length; i++) {
 		out.push(this[i]);

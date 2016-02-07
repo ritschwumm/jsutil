@@ -1,4 +1,6 @@
-var LocationHash = {
+var jsutil	= jsutil || {};
+
+jsutil.Hash = {
 	/** to be used to get an url for some state */
 	ref: function(value) {
 		return window.location.href.replace(/#.*/, "") + "#" + value;
