@@ -79,7 +79,7 @@ jsutil.Array = {
 		var no	= [];
 		for (var i=0; i<array.length; i++) {
 			var	item	= array[i];
-			(predicate(item) ? yes : no).push(item);
+			(pred(item) ? yes : no).push(item);
 		}
 		return [ yes, no ];
 	},
