@@ -14,8 +14,8 @@ Function.prototype.callAfter = function(millis, continuation) {
 	}
 	var	timer	= window.setTimeout(execute, millis);
 	function cancel() {
-		 window.clearTimeout(timer) 
-		 return !running;
+		window.clearTimeout(timer);
+		return !running;
 	}
 	return {
 		cancel: cancel

@@ -26,7 +26,7 @@ if (window.console) {
 	}
 
 	// inject missing functions
-	for (key in jsutil.Console) {
+	for (var key in jsutil.Console) {
 		if (!window.console[key] && jsutil.Console.hasOwnProperty(key)) {
 			window.console[key]	= jsutil.Console[key];
 		}

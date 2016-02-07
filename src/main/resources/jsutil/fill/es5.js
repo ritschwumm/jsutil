@@ -126,8 +126,8 @@ if (!Array.prototype.some)
 if (!Array.prototype.reduce)
 		Array.prototype.reduce	= function(fun /*, initial*/) {
 			var len	= this.length;
-			if (typeof fun != "function")			throw new TypeError();
-			if (len == 0 && arguments.length == 1)	throw new TypeError();
+			if (typeof fun != "function")				throw new TypeError();
+			if (len === 0 && arguments.length === 1)	throw new TypeError();
 			
 			var i	= 0;
 			var rv;
@@ -156,8 +156,8 @@ if (!Array.prototype.reduce)
 if (!Array.prototype.reduceRight)
 		Array.prototype.reduceRight = function(fun /*, initial*/) {
 			var len	= this.length;
-			if (typeof fun != "function")			throw new TypeError();
-			if (len == 0 && arguments.length == 1)	throw new TypeError();
+			if (typeof fun != "function")				throw new TypeError();
+			if (len === 0 && arguments.length === 1)	throw new TypeError();
 			
 			var i	= len - 1;
 			var rv;
@@ -240,7 +240,7 @@ if (!window.JSON)
 								case "\n":	return "\\n";
 								case "\f":	return "\\f";
 								case "\r":	return "\\r";
-								case '"': 	return '\\"';
+								case '"':	return '\\"';
 								case "\\":	return "\\\\";
 							}
 							return "\\u" + ("0000" + $0.charCodeAt(0).toString(16)).slice(-4);
@@ -268,7 +268,8 @@ if (!window.JSON)
 					else if (typeof obj === "object") {
 						out.push("{");
 						var	first	= true;
-						for (i in obj) {
+						for (var i in obj) {
+							if (!obj.hasOwnProperty(i))	continue;
 							if (first)	out.push(",");
 							else		first	= false;
 							append(out, i);

@@ -40,14 +40,14 @@ jsutil.XML = {
 	
 	/** escapes XML metacharacters */
 	encode: function(str) { 
-		return str.replace(/&/g, 	'&amp;')
+		return str.replace(/&/g,	'&amp;')
 					.replace(/</g,	'&lt;')
 					.replace(/>/g,	'&gt;');
 	},
 	
 	/** escapes XML metacharacters including double quotes */
 	encodeDQ: function(str) {
-		return str.replace(/&/g, 	'&amp;')
+		return str.replace(/&/g,	'&amp;')
 					.replace(/</g,	'&lt;')
 					.replace(/>/g,	'&gt;')
 					.replace(/\"/g,	'&quot;');
@@ -55,7 +55,7 @@ jsutil.XML = {
 	
 	/** escapes XML metacharacters including single quotes */
 	encodeSQ: function(str) {
-		return str.replace(/&/g, 	'&amp;')
+		return str.replace(/&/g,	'&amp;')
 					.replace(/</g,	'&lt;')
 					.replace(/>/g,	'&gt;')
 					.replace(/\'/g,	'&apos;');
@@ -63,8 +63,8 @@ jsutil.XML = {
 	
 	/** decodes results of encode, encodeDQ and encodeSQ */
 	decode: function(code) {
-		return code.replace(/&quot/g, 	'"')
-					.replace(/&apos/g, 	"'")
+		return code.replace(/&quot/g,	'"')
+					.replace(/&apos/g,	"'")
 					.replace(/&gt;/g,	">")
 					.replace(/&lt;/g,	"<")
 					.replace(/&amp;/g,	"&");

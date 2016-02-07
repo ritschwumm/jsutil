@@ -3,7 +3,7 @@ var jsutil	= jsutil || {};
 jsutil.Cell	= function(initial) {
 	this.value		= initial;
 	this.emitter	= new jsutil.Emitter();
-}
+};
 jsutil.Cell.prototype	= {
 	/** get the current value */
 	get: function() {

@@ -72,11 +72,11 @@ jsutil.Form = {
 			return [];
 		}
 		else if (type === "submit") {
-			if (value)	return [ [ name, value 			] ];
+			if (value)	return [ [ name, value			] ];
 			else		return [ [ name, "Submit Query"	] ];
 		}
 		else if (type === "button" || type === "image") {
-			if (value)	return [ [ name, value 			] ];
+			if (value)	return [ [ name, value			] ];
 			else		return [ [ name, ""				] ];
 		}
 		else if (type === "checkbox" || type === "radio") {
@@ -98,7 +98,7 @@ jsutil.Form = {
 			return pairs;
 		}
 		else if (type === "text" || type === "password" || type === "hidden" || type === "textarea") {
-			if (value)	return [ [ name, value 	] ];
+			if (value)	return [ [ name, value	] ];
 			else		return [ [ name, ""		] ];
 		}
 		else if (type === "file") {

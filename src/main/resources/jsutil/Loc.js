@@ -21,7 +21,7 @@ jsutil.Loc	= function(urlStr) {
 	this.pathname	= m[5] ? m[5] : "";								// /wiki/Test
 	this.hash		= m[6] ? m[6] : "";								// #Industry
 	this.search		= m[7] ? m[7] : "";								// ?action=edit
-}
+};
 jsutil.Loc.prototype = {
 	/** matches a global or local URL */
 	parser: /((.+?)\/\/([^:\/]+)(:[0-9]+)?)?([^#?]+)?(#[^?]*)?(\?.*)?/,

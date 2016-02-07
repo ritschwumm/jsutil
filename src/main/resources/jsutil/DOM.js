@@ -24,10 +24,10 @@ jsutil.DOM = {
 	},
 
 	/**
-      * find descendants of an ancestor by tagName, className and index 
-	  * tagName, className and index are optional
-	  * returns a single element when index exists or an Array of elements if not
-	  */
+    * find descendants of an ancestor by tagName, className and index 
+	* tagName, className and index are optional
+	* returns a single element when index exists or an Array of elements if not
+	*/
 	fetch: function(ancestor, tagName, className, index) {
 		if (ancestor && ancestor.constructor === String) {
 			ancestor	= document.getElementById(ancestor);
@@ -176,7 +176,7 @@ jsutil.DOM = {
 	/** replace a target with a replacement node */
 	replaceNode: function(target, replacement) {
 		target.parentNode.replaceChild(replacement, target); 
- 	},
+	},
 	
 	/** replace a target with many replacement nodes */
 	replaceNodeMany: function(target, replacements) {
@@ -210,7 +210,7 @@ jsutil.DOM = {
 	},
 	
 	/** pass the class names array to a function modifying it */
-	modifyClasses: function(element, setFunc) {
+	modifyClasses: function(element, func) {
 		this.setClasses(element, func(this.getClasses(element)));
 	},
 
@@ -256,7 +256,7 @@ jsutil.DOM = {
 	/** sets or unsets a class on an element */
 	updateClass: function(element, className, active) {
 		if (active)	this.addClass(element, className);
-		else 		this.removeClass(element, className);
+		else		this.removeClass(element, className);
 	},
 	
 	/** switches between two different classes */

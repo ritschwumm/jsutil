@@ -2,7 +2,7 @@ var jsutil	= jsutil || {};
 
 jsutil.Emitter	= function() {
 	this.listeners	= [];
-}
+};
 jsutil.Emitter.prototype	= {
 	/** call all listeners with the given value */
 	fire: function(value) {

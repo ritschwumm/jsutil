@@ -4,11 +4,6 @@ var jsutil	= jsutil || {};
 
 /** Object helper functions */
 jsutil.Object = {
-	/*
-	NOTE Object.create(proto [, propertiesObject ])
-	@see https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/create
-	*/
-	
 	/** return a type-indicating string */
 	type: function(obj) {
 		return	obj === null	? "null"		:

@@ -95,6 +95,7 @@ jsutil.Ajax = {
 		}
 		if (args.headers) {
 			for (var key in args.headers) {
+				if (!args.headers.hasOwnProperty(key))	continue;
 				client.setRequestHeader(key, args.headers[key]);
 			}
 		}
@@ -181,6 +182,7 @@ jsutil.Ajax = {
 	hashToPairs: function(map) {
 		var	out	= [];
 		for (var key in map) {
+			if (!map.hasOwnProperty(key))	continue;
 			var	value	= map[key];
 			if (value === null)	continue;
 			if (value.constructor === Array) {
