@@ -18,7 +18,7 @@ jsutil.Predicate = {
 	
 	or: function(a,b) {
 		return function(v) {
-			return a(v) ||b(v);
+			return a(v) || b(v);
 		};
 	}//,
 };
