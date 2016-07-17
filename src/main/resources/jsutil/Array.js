@@ -160,6 +160,16 @@ jsutil.Array = {
 		return out;
 	},
 	
+	/** use a function to extract keys and values and build an Object */
+	objectKv: function(array, keyFunc, valueFunc) {
+		var	out	= {};
+		for (var i=0; i<array.length; i++) {
+			var	item	= array[i];
+			out[keyFunc(item)]	= valueFunc(item);
+		}
+		return out;
+	},
+	
 	//------------------------------------------------------------------------------
 	//## math for number-arrays
 	

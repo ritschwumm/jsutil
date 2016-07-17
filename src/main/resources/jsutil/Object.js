@@ -60,6 +60,17 @@ jsutil.Object = {
 		return out;
 	},
 	
+	/** make an array by transforming each key/value pair with a function */
+	arrayKv: function(obj, func) {
+		var out	= [];
+		for (var key in obj) {
+			if (obj.hasOwnProperty(key)) {
+				out.push(func(key, obj[key]));
+			}
+		}
+		return out;
+	},
+	
 	/** returns an object's slots as an Array of Pairs */
 	toPairs: function(obj) {
 		var	out	= [];
